@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { store, AppState } from './core/store';
+import type { AppState } from './core/store';
+import { store } from './core/store';
 import './components/hg-nav';
 import './features/reader/hg-reader-view';
 import './components/hg-base';
