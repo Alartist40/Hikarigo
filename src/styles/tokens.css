@@ -1,18 +1,30 @@
 :root {
-  --hg-bg-base: #FFF8F0;
+  /* Base palette adapted to modern/soft style */
+  --hg-bg-base: #F0F2F5; /* Soft background */
+  --hg-card-bg: #F0F2F5;
   --hg-primary: #6B8E9F;
   --hg-accent: #E8A598;
-  --hg-text-primary: #3A3A3A;
+  --hg-text-primary: #333333;
   --hg-text-secondary: #6B7280;
-  --hg-success: #7CB342;
-  --hg-warning: #FFB74D;
-  --hg-error: #E57373;
 
-  --hg-font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Neumorphic Shadows (Soft UI) */
+  --hg-shadow-outer: 6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF;
+  --hg-shadow-inner: inset 4px 4px 8px #D1D9E6, inset -4px -4px 8px #FFFFFF;
+  --hg-shadow-active: inset 2px 2px 5px #B8C2CC, inset -2px -2px 5px #FFFFFF;
+
+  /* Glow Accents */
+  --hg-glow: 0 0 15px rgba(232, 165, 152, 0.5), 0 0 5px rgba(255, 183, 77, 0.3);
+
+  /* Typography */
+  --hg-font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --hg-radius-pill: 50px;
+  --hg-radius-card: 24px;
 }
 
 body {
   margin: 0;
   padding: 0;
   background-color: var(--hg-bg-base);
+  font-family: var(--hg-font-main);
+  color: var(--hg-text-primary);
 }
