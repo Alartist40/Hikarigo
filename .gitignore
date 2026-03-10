@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+/hikarigo
+/tools/bin/
+package-lock.json

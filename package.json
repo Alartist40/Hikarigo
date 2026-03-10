@@ -1,0 +1,22 @@
+{
+  "name": "hikarigo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "lit": "^3.1.2",
+    "dexie": "^4.0.1",
+    "workbox-window": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-pwa": "^0.19.2",
+    "terser": "^5.27.2"
+  }
+}
