@@ -5,6 +5,8 @@ import './components/hg-nav';
 import './features/reader/hg-reader-view';
 import './components/hg-base';
 
+const USER_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+
 @customElement('hg-app')
 export class HGApp extends LitElement {
   @property({ type: Object })
@@ -35,40 +37,57 @@ export class HGApp extends LitElement {
       color: var(--hg-text-primary);
     }
     header {
-      padding: 2rem 1rem 1rem;
+      padding: 2.5rem 1rem 1.5rem;
       text-align: center;
     }
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 800;
-      letter-spacing: 0.2rem;
+      letter-spacing: 0.25rem;
       color: var(--hg-primary);
       text-transform: uppercase;
       margin-bottom: 0.5rem;
-      text-shadow: var(--hg-shadow-outer);
+      text-shadow: 2px 2px 4px #D1D9E6, -1px -1px 2px #FFFFFF;
     }
     .tagline {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--hg-text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.05rem;
+      letter-spacing: 0.12rem;
+      opacity: 0.8;
     }
     main {
       flex: 1;
       overflow-y: auto;
       padding: 1rem;
-      padding-bottom: 8rem; /* Extended space for floating nav */
+      padding-bottom: 9rem; /* Extended space for floating nav */
     }
     .container {
       max-width: 600px;
       margin: 0 auto;
     }
     h1 {
-      font-size: 1.25rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 1.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.15rem;
       color: var(--hg-text-secondary);
+      opacity: 0.9;
+    }
+    .profile-card-content {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+    .profile-avatar {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 50%;
+      box-shadow: var(--hg-shadow-inner);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--hg-bg-base);
     }
   `;
 
@@ -93,8 +112,8 @@ export class HGApp extends LitElement {
         return html`
           <h1>Home</h1>
           <hg-card>
-            <p>Welcome to HikariGo! Glide through your language learning journey.</p>
-            <hg-button primary active .glow=${true} style="margin-top: 1rem">Get Started</hg-button>
+            <p>Welcome back! Ready to continue your journey through the light?</p>
+            <hg-button primary active .glow=${true} style="margin-top: 1.5rem">Continue Learning</hg-button>
           </hg-card>
         `;
       case '#learn':
@@ -103,26 +122,28 @@ export class HGApp extends LitElement {
         return html`
           <h1>Review</h1>
           <hg-card>
-            <p>You have 15 words due for review today.</p>
-            <hg-button primary style="margin-top: 1rem">Start Review</hg-button>
+            <p>You have 15 words due for review today. Consistency is key to mastery.</p>
+            <hg-button primary style="margin-top: 1.5rem">Start Daily Review</hg-button>
           </hg-card>
         `;
       case '#dictionary':
         return html`
           <h1>Dictionary</h1>
           <hg-card class="inner">
-            <p style="color: var(--hg-text-secondary)">Search thousands of words instantly...</p>
+            <p style="color: var(--hg-text-secondary); font-style: italic">Type a word to search the Core 2k dictionary...</p>
           </hg-card>
         `;
       case '#profile':
         return html`
           <h1>Profile</h1>
           <hg-card>
-            <div style="display: flex; gap: 1rem; align-items: center">
-              <div style="width: 4rem; height: 4rem; border-radius: 50%; box-shadow: var(--hg-shadow-inner); display: flex; align-items: center; justify-content: center; font-size: 2rem">👤</div>
+            <div class="profile-card-content">
+              <div class="profile-avatar">
+                ${USER_ICON}
+              </div>
               <div>
-                <div style="font-weight: bold">Learner Hika</div>
-                <div style="font-size: 0.8rem; color: var(--hg-text-secondary)">Level 5 · 2,450 XP</div>
+                <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.2rem">Learner Hika</div>
+                <div style="font-size: 0.85rem; color: var(--hg-text-secondary); letter-spacing: 0.05rem">LEVEL 5 · 2,450 XP</div>
               </div>
             </div>
           </hg-card>
