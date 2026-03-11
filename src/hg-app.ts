@@ -33,47 +33,55 @@ export class HGApp extends LitElement {
       display: flex;
       flex-direction: column;
       height: 100vh;
+      width: 100%;
       font-family: var(--hg-font-main);
       background-color: var(--hg-bg-base);
       color: var(--hg-text-primary);
+      overflow: hidden;
     }
     header {
-      padding: 2.5rem 1rem 1.5rem;
+      padding: 3rem 1rem 1.5rem;
       text-align: center;
+      flex-shrink: 0;
     }
     .logo {
-      font-size: 1.75rem;
+      font-size: 2rem;
       font-weight: 800;
-      letter-spacing: 0.25rem;
+      letter-spacing: 0.3rem;
       color: var(--hg-primary);
       text-transform: uppercase;
       margin-bottom: 0.5rem;
-      text-shadow: 2px 2px 4px #D1D9E6, -1px -1px 2px #FFFFFF;
+      text-shadow: 2px 2px 4px #BABECC, -1px -1px 2px #FFFFFF;
     }
     .tagline {
       font-size: 0.75rem;
       color: var(--hg-text-secondary);
       text-transform: uppercase;
-      letter-spacing: 0.12rem;
-      opacity: 0.8;
+      letter-spacing: 0.15rem;
+      opacity: 0.7;
     }
     main {
       flex: 1;
       overflow-y: auto;
       padding: 1rem;
-      padding-bottom: 9rem; /* Extended space for floating nav */
+      padding-bottom: 10rem; /* Space for the floating nav bar */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .container {
+      width: 100%;
       max-width: 600px;
-      margin: 0 auto;
+      padding: 0 1rem;
     }
     h1 {
       font-size: 1.1rem;
-      margin-bottom: 1.75rem;
+      margin: 1rem 0 2rem;
       text-transform: uppercase;
-      letter-spacing: 0.15rem;
+      letter-spacing: 0.2rem;
       color: var(--hg-text-secondary);
-      opacity: 0.9;
+      text-align: center;
+      width: 100%;
     }
     .profile-card-content {
       display: flex;
@@ -81,14 +89,23 @@ export class HGApp extends LitElement {
       align-items: center;
     }
     .profile-avatar {
-      width: 4.5rem;
-      height: 4.5rem;
+      width: 5rem;
+      height: 5rem;
       border-radius: 50%;
       box-shadow: var(--hg-shadow-inner);
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: var(--hg-bg-base);
+    }
+    /* Simple fade-in animation for page transitions */
+    .route-container {
+      animation: fadeIn 0.4s ease-out;
+      width: 100%;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   `;
 
@@ -100,7 +117,9 @@ export class HGApp extends LitElement {
       </header>
       <main>
         <div class="container">
-          ${this._renderRoute()}
+          <div class="route-container" key=${this.state.currentRoute}>
+            ${this._renderRoute()}
+          </div>
         </div>
       </main>
       <hg-nav .currentRoute=${this.state.currentRoute}></hg-nav>
@@ -113,8 +132,8 @@ export class HGApp extends LitElement {
         return html`
           <h1>Home</h1>
           <hg-card>
-            <p>Welcome back! Ready to continue your journey through the light?</p>
-            <hg-button primary active .glow=${true} style="margin-top: 1.5rem">Continue Learning</hg-button>
+            <p style="line-height: 1.6">Welcome back to HikariGo! Continue your journey into the English language with our focused, light, and distraction-free environment.</p>
+            <hg-button primary active .glow=${true} style="margin-top: 1.5rem; width: 100%; justify-content: center">Continue Learning</hg-button>
           </hg-card>
         `;
       case '#learn':
@@ -123,15 +142,17 @@ export class HGApp extends LitElement {
         return html`
           <h1>Review</h1>
           <hg-card>
-            <p>You have 15 words due for review today. Consistency is key to mastery.</p>
-            <hg-button primary style="margin-top: 1.5rem">Start Daily Review</hg-button>
+            <p style="line-height: 1.6">You have 15 words due for review today. Master your vocabulary with spaced repetition.</p>
+            <hg-button primary style="margin-top: 1.5rem; width: 100%; justify-content: center">Start Daily Review</hg-button>
           </hg-card>
         `;
       case '#dictionary':
         return html`
           <h1>Dictionary</h1>
           <hg-card class="inner">
-            <p style="color: var(--hg-text-secondary); font-style: italic">Type a word to search the Core 2k dictionary...</p>
+            <div style="height: 10rem; display: flex; align-items: center; justify-content: center">
+              <p style="color: var(--hg-text-secondary); font-style: italic; letter-spacing: 0.05rem">Type a word to search...</p>
+            </div>
           </hg-card>
         `;
       case '#profile':
@@ -143,14 +164,20 @@ export class HGApp extends LitElement {
                 ${USER_ICON}
               </div>
               <div>
-                <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 0.2rem">Learner Hika</div>
-                <div style="font-size: 0.85rem; color: var(--hg-text-secondary); letter-spacing: 0.05rem">LEVEL 5 · 2,450 XP</div>
+                <div style="font-weight: 700; font-size: 1.3rem; margin-bottom: 0.2rem">Learner Hika</div>
+                <div style="font-size: 0.9rem; color: var(--hg-text-secondary); letter-spacing: 0.08rem">LEVEL 5 · 2,450 XP</div>
               </div>
             </div>
           </hg-card>
         `;
       default:
-        return html`<h1>404</h1><p>Route not found.</p>`;
+        // Default to home if route not found
+        return html`
+          <h1>Home</h1>
+          <hg-card>
+             <p>Returning home...</p>
+          </hg-card>
+        `;
     }
   }
 }

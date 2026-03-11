@@ -1,16 +1,16 @@
 :root {
   /* Base palette adapted to modern/soft style */
-  --hg-bg-base: #F0F2F5; /* Soft background */
-  --hg-card-bg: #F0F2F5;
+  --hg-bg-base: #E0E5EC; /* Darker soft background for better Neumorphism contrast */
+  --hg-card-bg: #E0E5EC;
   --hg-primary: #6B8E9F;
   --hg-accent: #E8A598;
-  --hg-text-primary: #333333;
-  --hg-text-secondary: #6B7280;
+  --hg-text-primary: #2D3436;
+  --hg-text-secondary: #636E72;
 
-  /* Neumorphic Shadows (Soft UI) */
-  --hg-shadow-outer: 6px 6px 12px #D1D9E6, -6px -6px 12px #FFFFFF;
-  --hg-shadow-inner: inset 4px 4px 8px #D1D9E6, inset -4px -4px 8px #FFFFFF;
-  --hg-shadow-active: inset 2px 2px 5px #B8C2CC, inset -2px -2px 5px #FFFFFF;
+  /* Neumorphic Shadows (Soft UI) - Stronger for better visibility */
+  --hg-shadow-outer: 9px 9px 16px #BABECC, -9px -9px 16px #FFFFFF;
+  --hg-shadow-inner: inset 4px 4px 10px #BABECC, inset -4px -4px 10px #FFFFFF;
+  --hg-shadow-active: inset 2px 2px 5px #99A1AF, inset -2px -2px 5px #FFFFFF;
 
   /* Glow Accents */
   --hg-glow: 0 0 15px rgba(232, 165, 152, 0.5), 0 0 5px rgba(255, 183, 77, 0.3);
@@ -21,10 +21,23 @@
   --hg-radius-card: 24px;
 }
 
-body {
+* {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   background-color: var(--hg-bg-base);
   font-family: var(--hg-font-main);
   color: var(--hg-text-primary);
+  overflow: hidden;
+}
+
+hg-app {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
