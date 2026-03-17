@@ -2,8 +2,12 @@ import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { AppState } from './core/store';
 import { store } from './core/store';
+import { Router } from './core/router';
 import './components/hg-nav';
 import './features/reader/hg-reader-view';
+import './features/vocab/hg-vocab-view';
+import './features/dictionary/hg-dict-search';
+import './features/spelling/hg-spelling-view';
 import './components/hg-base';
 
 const USER_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
@@ -133,27 +137,22 @@ export class HGApp extends LitElement {
           <h1>Home</h1>
           <hg-card>
             <p style="line-height: 1.6">Welcome back to HikariGo! Continue your journey into the English language with our focused, light, and distraction-free environment.</p>
-            <hg-button primary active .glow=${true} style="margin-top: 1.5rem; width: 100%; justify-content: center">Continue Learning</hg-button>
+            <hg-button primary active .glow=${true} style="margin-top: 1.5rem; width: 100%; justify-content: center" @click=${() => Router.navigate('#learn')}>Continue Learning</hg-button>
           </hg-card>
+          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Quick Practice</h2>
+          <hg-spelling-view></hg-spelling-view>
         `;
       case '#learn':
         return html`<h1>Learn</h1><hg-reader-view></hg-reader-view>`;
       case '#review':
         return html`
           <h1>Review</h1>
-          <hg-card>
-            <p style="line-height: 1.6">You have 15 words due for review today. Master your vocabulary with spaced repetition.</p>
-            <hg-button primary style="margin-top: 1.5rem; width: 100%; justify-content: center">Start Daily Review</hg-button>
-          </hg-card>
+          <hg-review-view></hg-review-view>
         `;
       case '#dictionary':
         return html`
           <h1>Dictionary</h1>
-          <hg-card class="inner">
-            <div style="height: 10rem; display: flex; align-items: center; justify-content: center">
-              <p style="color: var(--hg-text-secondary); font-style: italic; letter-spacing: 0.05rem">Type a word to search...</p>
-            </div>
-          </hg-card>
+          <hg-dict-search></hg-dict-search>
         `;
       case '#profile':
         return html`

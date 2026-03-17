@@ -1,6 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import '../../components/hg-base';
+import { db } from '../../core/db';
+import { createNewCard } from '../vocab/hg-srs-engine';
 
 @customElement('hg-reader-view')
 export class HGReaderView extends LitElement {
@@ -60,7 +62,7 @@ export class HGReaderView extends LitElement {
           ${words.map(word => html`<span class="word" @click=${() => this._handleWordClick(word)}>${word}</span> `)}
         </div>
         <div class="controls">
-          <hg-button primary active .glow=${true}>Add to SRS</hg-button>
+          <hg-button primary active .glow=${true} @click=${this._addToSRS}>Add to SRS</hg-button>
           <hg-button>Listen</hg-button>
         </div>
       </hg-card>
@@ -69,6 +71,21 @@ export class HGReaderView extends LitElement {
 
   private _handleWordClick(word: string) {
     const cleanWord = word.replace(/[^a-zA-Z]/g, '');
+    this.selectedWord = cleanWord;
     console.log(`Translate: ${cleanWord}`);
+  }
+
+  @property({ type: String })
+  selectedWord = "";
+
+  private async _addToSRS() {
+    if (!this.selectedWord) {
+      // Just take the first word for demo if none selected
+      this.selectedWord = this.content.split(' ')[0].replace(/[^a-zA-Z]/g, '');
+    }
+
+    const card = createNewCard(this.selectedWord, 'a1');
+    await db.srsCards.add(card);
+    alert(`Added "${this.selectedWord}" to your reviews!`);
   }
 }

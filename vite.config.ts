@@ -8,7 +8,9 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     sourcemap: true,
+    assetsDir: 'assets',
   },
+  publicDir: 'static',
   plugins: [
     VitePWA({
       strategies: 'injectManifest',

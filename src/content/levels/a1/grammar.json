@@ -1,0 +1,11 @@
+[
+  {
+    "id": "a1-grammar-001",
+    "pattern": "A is B",
+    "meaning": "AはBです",
+    "examples": [
+      { "en": "God is light.", "ja": "神は光です。" },
+      { "en": "Learning is fun.", "ja": "学ぶことは楽しいです。" }
+    ]
+  }
+]
