@@ -9,6 +9,7 @@ import './features/vocab/hg-vocab-view';
 import './features/dictionary/hg-dict-search';
 import './features/spelling/hg-spelling-view';
 import './components/hg-base';
+import './styles/tokens.css';
 
 const USER_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
 
