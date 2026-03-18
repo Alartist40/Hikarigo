@@ -13,6 +13,7 @@
     "lit": "^3.1.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "terser": "^5.27.2",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",

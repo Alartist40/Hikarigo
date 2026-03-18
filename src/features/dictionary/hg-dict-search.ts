@@ -76,11 +76,11 @@ export class HGDictSearch extends LitElement {
         ${this._results.length === 0 && this._query && !this._loading ?
           html`<p style="text-align: center; color: var(--hg-text-secondary)">No results found.</p>` : ''}
         ${this._results.map(entry => html`
-          <hg-card>
-            <div class="entry-word">${entry.word}</div>
-            <div class="entry-reading">${entry.reading}</div>
+          <div class="result-card" style="margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1)">
+            <div class="entry-word" style="font-weight: bold; color: var(--hg-primary)">${entry.word}</div>
+            <div class="entry-reading" style="font-size: 0.9em; color: gray">${entry.reading}</div>
             <div class="entry-meaning">${entry.meaning}</div>
-          </hg-card>
+          </div>
         `)}
       </div>
     `;
