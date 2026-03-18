@@ -33,18 +33,12 @@ export class Store<T> {
 export interface AppState {
   theme: 'light' | 'dark' | 'auto';
   language: 'ja' | 'en';
-  user: {
-    xp: number;
-    level: number;
-    streak: number;
-  } | null;
   currentRoute: string;
 }
 
 const initialState: AppState = {
   theme: 'auto',
   language: 'ja',
-  user: null,
   currentRoute: window.location.hash || '#home',
 };
 

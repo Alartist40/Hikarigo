@@ -78,6 +78,8 @@ export class HGCard extends LitElement {
       padding: 1.5rem;
       box-shadow: var(--hg-shadow-outer);
       margin-bottom: 1.5rem;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
     :host(.inner) {
       box-shadow: var(--hg-shadow-inner);

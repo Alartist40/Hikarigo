@@ -5,7 +5,7 @@ import '../../components/hg-base';
 @customElement('hg-spelling-view')
 export class HGSpellingView extends LitElement {
   @state()
-  private _word = "curiosity";
+  private _word = "faith";
 
   @state()
   private _userInput = "";

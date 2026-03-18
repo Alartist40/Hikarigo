@@ -1,27 +1,102 @@
 [
   {
-    "word": "light",
-    "reading": "hikarigo",
-    "meaning": "A special project for language learning."
+    "word": "God",
+    "reading": "Kami",
+    "meaning": "The creator and ruler of the universe and source of all moral authority."
   },
   {
-    "word": "curiosity",
-    "reading": "kōkishin",
-    "meaning": "A strong desire to know or learn something."
+    "word": "Jesus",
+    "reading": "Iesu",
+    "meaning": "The central figure of Christianity, the son of God."
   },
   {
-    "word": "glide",
-    "reading": "kassō",
-    "meaning": "Move with a smooth continuous motion."
+    "word": "Bible",
+    "reading": "Seisho",
+    "meaning": "The Christian scriptures, consisting of the Old and New Testaments."
   },
   {
-    "word": "spirit",
-    "reading": "seishin",
+    "word": "Prayer",
+    "reading": "Inori",
+    "meaning": "A solemn request for help or expression of thanks addressed to God."
+  },
+  {
+    "word": "Faith",
+    "reading": "Shinkō",
+    "meaning": "Strong belief in the doctrines of a religion, based on spiritual conviction rather than proof."
+  },
+  {
+    "word": "Grace",
+    "reading": "恵み (Megumi)",
+    "meaning": "The free and unmerited favor of God, as manifested in the salvation of sinners."
+  },
+  {
+    "word": "Mercy",
+    "reading": "慈しみ (Itsukushimi)",
+    "meaning": "Compassion or forgiveness shown toward someone whom it is within one's power to punish or harm."
+  },
+  {
+    "word": "Spirit",
+    "reading": "霊 (Rei)",
     "meaning": "The non-physical part of a person which is the seat of emotions and character."
   },
   {
-    "word": "peace",
-    "reading": "heiwa",
+    "word": "Peace",
+    "reading": "平和 (Heiwa)",
     "meaning": "Freedom from disturbance; tranquility."
+  },
+  {
+    "word": "Truth",
+    "reading": "真理 (Shinri)",
+    "meaning": "The quality or state of being true."
+  },
+  {
+    "word": "Light",
+    "reading": "光 (Hikari)",
+    "meaning": "The natural agent that stimulates sight and makes things visible."
+  },
+  {
+    "word": "Life",
+    "reading": "命 (Inochi)",
+    "meaning": "The condition that distinguishes animals and plants from inorganic matter."
+  },
+  {
+    "word": "Love",
+    "reading": "愛 (Ai)",
+    "meaning": "An intense feeling of deep affection."
+  },
+  {
+    "word": "Heart",
+    "reading": "心 (Kokoro)",
+    "meaning": "The center of a person's thoughts and emotions."
+  },
+  {
+    "word": "Kingdom",
+    "reading": "御国 (Mikuni)",
+    "meaning": "The realm over which God reigns."
+  },
+  {
+    "word": "Shepherd",
+    "reading": "羊飼い (Hitsujikai)",
+    "meaning": "A person who tends and rears sheep."
+  },
+  {
+    "word": "Disciple",
+    "reading": "弟子 (Deshi)",
+    "meaning": "A personal follower of Jesus during his life."
+  },
+  {
+    "word": "Apostle",
+    "reading": "使徒 (Shito)",
+    "meaning": "Each of the twelve chief disciples of Jesus Christ."
+  },
+  {
+    "word": "Forgive",
+    "reading": "赦す (Yurusu)",
+    "meaning": "Stop feeling angry or resentful toward someone for an offense."
+  },
+  {
+    "word": "Worship",
+    "reading": "礼拝 (Reihai)",
+    "meaning": "The feeling or expression of reverence and adoration for a deity."
   }
 ]

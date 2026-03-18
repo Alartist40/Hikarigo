@@ -51,14 +51,37 @@ export class HGReaderView extends LitElement {
   `;
 
   @property({ type: String })
-  content = "Welcome to HikariGo. This is a special project for learning English. Tap on any word to see its translation.";
+  content = "";
+
+  @property({ type: String })
+  titleText = "Daily Reading";
+
+  async connectedCallback() {
+    super.connectedCallback();
+    if (!this.content) {
+      await this._loadReading();
+    }
+  }
+
+  private async _loadReading() {
+    try {
+      const response = await fetch('./content/levels/a1/readings.json');
+      const readings = await response.json();
+      const randomReading = readings[Math.floor(Math.random() * readings.length)];
+      this.content = randomReading.content;
+      this.titleText = randomReading.title;
+      this.requestUpdate();
+    } catch (e) {
+      this.content = "Welcome to HikariGo. This is a special project for learning English. Tap on any word to see its translation.";
+    }
+  }
 
   render() {
     // Better tokenization that preserves punctuation
     const tokens = this.content.match(/(\w+['']?\w*|[,.!?;:])/g) || [];
     return html`
       <hg-card>
-        <h2>Daily Reading</h2>
+        <h2>${this.titleText}</h2>
         <div class="text">
           ${tokens.map(token => {
             const isWord = /\w/.test(token);

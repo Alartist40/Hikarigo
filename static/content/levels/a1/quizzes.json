@@ -1,0 +1,188 @@
+[
+  {
+    "id": "a1-quiz-bible-grammar",
+    "title": "Bible Grammar Quiz (A1-A2)",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "Every morning, David _______ to God.",
+        "options": ["pray", "prays", "praying", "prayed"],
+        "correctAnswer": "prays",
+        "explanation": "Present Simple (habits/routines). 3rd person singular adds -s.",
+        "japanese": "「毎朝」=習慣。三人称単数は-sが必要。"
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "Yesterday, the disciples _______ across the lake.",
+        "options": ["sail", "sails", "sailing", "sailed"],
+        "correctAnswer": "sailed",
+        "explanation": "Past Simple (completed actions). Regular verbs add -ed.",
+        "japanese": "「昨日」=過去の完了。「ed」で規則的な過去形。"
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "She _______ in the garden now.",
+        "options": ["work", "works", "is working", "worked"],
+        "correctAnswer": "is working",
+        "explanation": "Present Continuous (happening now). Form: am/is/are + verb-ing.",
+        "japanese": "「今」=進行形。be動詞 + -ing。"
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "Moses _______ the people through the desert many years ago.",
+        "options": ["lead", "leads", "leading", "led"],
+        "correctAnswer": "led",
+        "explanation": "Past Simple - Irregular verbs. Lead → led.",
+        "japanese": "不規則動詞の過去形。lead → led。"
+      },
+      {
+        "id": "q5",
+        "type": "multiple-choice",
+        "question": "The sun _______ in the east every day.",
+        "options": ["rise", "rises", "is rising", "rised"],
+        "correctAnswer": "rises",
+        "explanation": "Universal truth = always true, use present simple. 'Sun' = it, so -es.",
+        "japanese": "普遍的真実は現在形。三人称なので-es。"
+      },
+      {
+        "id": "q6",
+        "type": "multiple-choice",
+        "question": "Last week, they _______ bread and fish to the crowd.",
+        "options": ["give", "gives", "gave", "given"],
+        "correctAnswer": "gave",
+        "explanation": "Past Simple - Irregular verbs. Give → gave.",
+        "japanese": "不規則動詞 give → gave。"
+      },
+      {
+        "id": "q7",
+        "type": "multiple-choice",
+        "question": "Right now, the children _______ songs of praise.",
+        "options": ["sing", "sings", "are singing", "sang"],
+        "correctAnswer": "are singing",
+        "explanation": "Present Continuous (action in progress). are + singing.",
+        "japanese": "「今まさに」=進行形。are singing。"
+      },
+      {
+        "id": "q8",
+        "type": "multiple-choice",
+        "question": "Paul usually _______ letters to the churches.",
+        "options": ["write", "writes", "writing", "wrote"],
+        "correctAnswer": "writes",
+        "explanation": "Present Simple with frequency adverbs. 'Paul' = he, so -s.",
+        "japanese": "「通常」=習慣。三人称単数は-s。"
+      },
+      {
+        "id": "q9",
+        "type": "multiple-choice",
+        "question": "Two thousand years ago, Jesus _______ in Bethlehem.",
+        "options": ["born", "is born", "was born", "were born"],
+        "correctAnswer": "was born",
+        "explanation": "Past Simple Passive. Jesus = was born.",
+        "japanese": "受動態の過去形。was born = 生まれた。"
+      },
+      {
+        "id": "q10",
+        "type": "multiple-choice",
+        "question": "Martha _______ in the kitchen while Mary listened to Jesus.",
+        "options": ["work", "works", "was working", "worked"],
+        "correctAnswer": "was working",
+        "explanation": "Past Continuous (background action). while = was working.",
+        "japanese": "過去進行形。while = 〜している間に。"
+      },
+      {
+        "id": "q11",
+        "type": "multiple-choice",
+        "question": "She is reading _______ Bible.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "the",
+        "explanation": "'The Bible' = specific, unique book.",
+        "japanese": "特定のもの（唯一無二）には the。"
+      },
+      {
+        "id": "q12",
+        "type": "multiple-choice",
+        "question": "He wants to be _______ good shepherd.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "a",
+        "explanation": "'A good shepherd' = one example of many, not specific.",
+        "japanese": "不特定の「一つの」には a/an。"
+      },
+      {
+        "id": "q13",
+        "type": "multiple-choice",
+        "question": "_______ sun is shining today.",
+        "options": ["A", "An", "The", "No article"],
+        "correctAnswer": "The",
+        "explanation": "'The sun' = only one sun exists. Always 'the'.",
+        "japanese": "太陽や月など唯一の自然物には the。"
+      },
+      {
+        "id": "q14",
+        "type": "multiple-choice",
+        "question": "They ate _______ apple from the tree.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "an",
+        "explanation": "'An' before vowel sounds.",
+        "japanese": "母音で始まる単語の前は an。"
+      },
+      {
+        "id": "q15",
+        "type": "multiple-choice",
+        "question": "He is _______ honest man.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "an",
+        "explanation": "'Honest' starts with vowel SOUND (silent h), so 'an'.",
+        "japanese": "スペルではなく音で判断。h が無音なので an。"
+      },
+      {
+        "id": "q16",
+        "type": "multiple-choice",
+        "question": "_______ God created the world.",
+        "options": ["A", "An", "The", "No article"],
+        "correctAnswer": "No article",
+        "explanation": "'God' used as name = no article.",
+        "japanese": "固有名詞（名前）には冠詞なし。"
+      },
+      {
+        "id": "q17",
+        "type": "multiple-choice",
+        "question": "She found _______ coin that was lost.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "the",
+        "explanation": "Specific coin (identified by 'that was lost'). Use 'the'.",
+        "japanese": "特定されたものには the。"
+      },
+      {
+        "id": "q18",
+        "type": "multiple-choice",
+        "question": "He has _______ faith in God.",
+        "options": ["a", "an", "the", "no article"],
+        "correctAnswer": "no article",
+        "explanation": "'Faith' = abstract concept, uncountable.",
+        "japanese": "抽象的・不可算名詞には冠詞なし。"
+      },
+      {
+        "id": "q19",
+        "type": "multiple-choice",
+        "question": "There is _______ book on _______ table.",
+        "options": ["a / a", "an / the", "a / the", "the / a"],
+        "correctAnswer": "a / the",
+        "explanation": "First mention (a book) vs. specific location (the table).",
+        "japanese": "初出は a/an、特定の場所・ものは the。"
+      },
+      {
+        "id": "q20",
+        "type": "multiple-choice",
+        "question": "_______ water in the river is clean.",
+        "options": ["A", "An", "The", "No article"],
+        "correctAnswer": "The",
+        "explanation": "Specific water (in the river). Use 'the'.",
+        "japanese": "特定の場所のものには the。"
+      }
+    ]
+  }
+]

@@ -8,10 +8,11 @@ import './features/reader/hg-reader-view';
 import './features/vocab/hg-vocab-view';
 import './features/dictionary/hg-dict-search';
 import './features/spelling/hg-spelling-view';
+import './features/quiz/hg-quiz-view';
 import './components/hg-base';
 import './styles/tokens.css';
 
-const USER_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+const SETTINGS_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`;
 
 @customElement('hg-app')
 export class HGApp extends LitElement {
@@ -37,12 +38,11 @@ export class HGApp extends LitElement {
     :host {
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      min-height: 100vh;
       width: 100%;
       font-family: var(--hg-font-main);
       background-color: var(--hg-bg-base);
       color: var(--hg-text-primary);
-      overflow: hidden;
     }
     header {
       padding: 3rem 1rem 1.5rem;
@@ -67,9 +67,8 @@ export class HGApp extends LitElement {
     }
     main {
       flex: 1;
-      overflow-y: auto;
       padding: 1rem;
-      padding-bottom: 10rem; /* Space for the floating nav bar */
+      padding-bottom: 12rem; /* Added extra space for floating nav and safe areas */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -88,12 +87,12 @@ export class HGApp extends LitElement {
       text-align: center;
       width: 100%;
     }
-    .profile-card-content {
+    .settings-card-content {
       display: flex;
       gap: 1.5rem;
       align-items: center;
     }
-    .profile-avatar {
+    .settings-icon-container {
       width: 5rem;
       height: 5rem;
       border-radius: 50%;
@@ -144,32 +143,46 @@ export class HGApp extends LitElement {
           <hg-spelling-view></hg-spelling-view>
         `;
       case '#learn':
-        return html`<h1>Learn</h1><hg-reader-view></hg-reader-view>`;
-      case '#review':
         return html`
-          <h1>Review</h1>
-          <hg-review-view></hg-review-view>
-          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Collection</h2>
-          <hg-vocab-view></hg-vocab-view>
+          <h1>Learn</h1>
+          <hg-reader-view></hg-reader-view>
+          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Quizzes</h2>
+          <hg-quiz-view></hg-quiz-view>
         `;
       case '#dictionary':
         return html`
           <h1>Dictionary</h1>
           <hg-dict-search></hg-dict-search>
         `;
-      case '#profile':
+      case '#settings':
         return html`
-          <h1>Profile</h1>
+          <h1>Settings</h1>
           <hg-card>
-            <div class="profile-card-content">
-              <div class="profile-avatar">
-                ${USER_ICON}
+            <div class="settings-card-content">
+              <div class="settings-icon-container">
+                ${SETTINGS_ICON}
               </div>
               <div>
-                <div style="font-weight: 700; font-size: 1.3rem; margin-bottom: 0.2rem">Learner Hika</div>
-                <div style="font-size: 0.9rem; color: var(--hg-text-secondary); letter-spacing: 0.08rem">LEVEL 5 · 2,450 XP</div>
+                <div style="font-weight: 700; font-size: 1.3rem; margin-bottom: 0.2rem">HikariGo Settings</div>
+                <div style="font-size: 0.9rem; color: var(--hg-text-secondary); letter-spacing: 0.08rem">Configuration & Preferences</div>
               </div>
             </div>
+          </hg-card>
+          <hg-card>
+             <div style="display: flex; flex-direction: column; gap: 1rem">
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                   <span>Language</span>
+                   <span style="font-weight: bold; color: var(--hg-primary)">English / Japanese</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                   <span>Theme</span>
+                   <span style="font-weight: bold; color: var(--hg-primary)">Soft Neumorphic</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center">
+                   <span>Version</span>
+                   <span style="font-weight: bold; color: var(--hg-text-secondary)">0.1.0</span>
+                </div>
+             </div>
           </hg-card>
         `;
       default:
