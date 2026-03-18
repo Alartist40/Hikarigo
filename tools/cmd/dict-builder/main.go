@@ -30,19 +30,19 @@ func main() {
 	outDir := "static/assets/dict"
 	if err := os.MkdirAll(outDir, 0755); err != nil {
 		fmt.Printf("Error creating directory: %v\n", err)
-		return
+		os.Exit(1)
 	}
 
 	data, err := json.MarshalIndent(core2k, "", "  ")
 	if err != nil {
 		fmt.Printf("Error marshaling JSON: %v\n", err)
-		return
+		os.Exit(1)
 	}
 
 	err = os.WriteFile(filepath.Join(outDir, "core-2k.json"), data, 0644)
 	if err != nil {
 		fmt.Printf("Error writing file: %v\n", err)
-		return
+		os.Exit(1)
 	}
 
 	fmt.Println("Successfully built core-2k.json")

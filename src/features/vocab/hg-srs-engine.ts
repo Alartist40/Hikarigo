@@ -4,6 +4,10 @@ import { SRSCard } from '../../core/db';
  * SM-2 Algorithm implementation for Spaced Repetition.
  */
 export function updateSRSCard(card: SRSCard, quality: number): SRSCard {
+  if (!Number.isFinite(quality) || quality < 0 || quality > 5) {
+    throw new RangeError('quality must be a number between 0 and 5');
+  }
+
   let { repetition, interval, easeFactor } = card;
 
   if (quality >= 3) {

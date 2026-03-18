@@ -1,4 +1,4 @@
-module github.com/user/hikarigo
+module github.com/Alartist40/Hikarigo
 
 go 1.24.3
 

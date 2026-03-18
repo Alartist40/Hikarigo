@@ -7,8 +7,8 @@ HikariGo is a privacy-first, offline-native Progressive Web App (PWA) designed t
 ## Core Features (Phase 1)
 - **Offline-Native:** Works completely offline using Service Workers and IndexedDB.
 - **Privacy-First:** Zero data collection, no trackers, no external analytics.
-- **Custom Reader:** A placeholder tap-to-translate interface for English text.
-- **Spaced Repetition System (SRS):** SM-2 algorithm integration for efficient vocabulary retention (Foundation laid).
+- **Tap-to-Translate Reader:** Interactive reading interface for English text with instant Japanese glosses.
+- **SRS Engine:** SM-2 algorithm integration for efficient vocabulary retention and daily reviews.
 - **Lightweight Stack:** Built with Lit (Web Components), TypeScript, Dexie.js, and Go for build tools.
 
 ## Technical Stack

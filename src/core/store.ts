@@ -9,7 +9,8 @@ export class Store<T> {
   }
 
   getState(): T {
-    return this.state;
+    // Return a shallow copy to prevent direct mutations of the state object
+    return { ...this.state };
   }
 
   setState(newState: Partial<T>): void {
@@ -23,7 +24,9 @@ export class Store<T> {
   }
 
   private notify(): void {
-    this.listeners.forEach((listener) => listener(this.state));
+    this.listeners.forEach((listener) => {
+      listener({ ...this.state });
+    });
   }
 }
 

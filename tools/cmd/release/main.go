@@ -8,7 +8,7 @@ import (
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: go run tools/cmd/release/main.go [build|serve]")
+		fmt.Println("Usage: go run tools/cmd/release/main.go [build|dev|preview]")
 		os.Exit(1)
 	}
 
@@ -17,8 +17,10 @@ func main() {
 	switch command {
 	case "build":
 		runBuild()
-	case "serve":
-		runServe()
+	case "dev":
+		runDev()
+	case "preview":
+		runPreview()
 	default:
 		fmt.Printf("Unknown command: %s\n", command)
 		os.Exit(1)
@@ -38,14 +40,26 @@ func runBuild() {
 	fmt.Println("Build successful!")
 }
 
-func runServe() {
+func runDev() {
 	fmt.Println("Starting development server...")
 	cmd := exec.Command("npm", "run", "dev")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	err := cmd.Run()
 	if err != nil {
-		fmt.Printf("Server failed: %v\n", err)
+		fmt.Printf("Dev server failed: %v\n", err)
+		os.Exit(1)
+	}
+}
+
+func runPreview() {
+	fmt.Println("Starting production preview...")
+	cmd := exec.Command("npm", "run", "preview")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		fmt.Printf("Preview failed: %v\n", err)
 		os.Exit(1)
 	}
 }

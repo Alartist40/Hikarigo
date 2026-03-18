@@ -102,7 +102,7 @@ export class HGReviewView extends LitElement {
     `;
 
     const card = this._cards[this._currentIndex];
-    const progress = ((this._currentIndex) / this._cards.length) * 100;
+    const progress = ((this._currentIndex + 1) / this._cards.length) * 100;
 
     return html`
       <div class="review-container">
@@ -112,7 +112,7 @@ export class HGReviewView extends LitElement {
 
         <hg-card class="flashcard">
           <div class="word-main">${card.wordId}</div>
-          ${this._showAnswer ? html`<div class="word-sub">Meaning goes here...</div>` : ''}
+          ${this._showAnswer ? html`<div class="word-sub">Meaning: ${card.wordId} translation</div>` : ''}
         </hg-card>
 
         <div class="controls">

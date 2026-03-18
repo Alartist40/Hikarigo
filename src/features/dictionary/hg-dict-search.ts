@@ -19,6 +19,8 @@ export class HGDictSearch extends LitElement {
   @state()
   private _loading = false;
 
+  private _searchSeq = 0;
+
   static styles = css`
     :host {
       display: block;
@@ -60,12 +62,12 @@ export class HGDictSearch extends LitElement {
   `;
 
   render() {
-    console.log(`Rendering HGDictSearch with ${this._results.length} results`);
     return html`
       <div class="search-box">
         <input
           type="text"
           placeholder="Search for a word..."
+          aria-label="Search for a word..."
           .value=${this._query}
           @input=${this._handleInput}
         />
@@ -95,35 +97,39 @@ export class HGDictSearch extends LitElement {
   private _dictCache: DictEntry[] | null = null;
 
   private async _search() {
-    console.log(`Searching for: ${this._query}`);
-    if (this._query.length < 2) {
+    const seq = ++this._searchSeq;
+    const query = this._query.trim().toLowerCase();
+
+    if (query.length < 2) {
       this._results = [];
+      this.requestUpdate();
       return;
     }
 
     this._loading = true;
+    this.requestUpdate();
 
     try {
       if (!this._dictCache) {
-        console.log("Fetching dictionary...");
         const response = await fetch('./assets/dict/core-2k.json');
-        console.log(`Fetch status: ${response.status}`);
         this._dictCache = await response.json();
-        console.log(`Loaded ${this._dictCache?.length} entries`);
       }
+
+      if (seq !== this._searchSeq) return;
 
       if (this._dictCache) {
         this._results = [...this._dictCache.filter(e =>
-          e.word.toLowerCase().includes(this._query.toLowerCase()) ||
-          e.meaning.toLowerCase().includes(this._query.toLowerCase())
+          e.word.toLowerCase().includes(query) ||
+          e.meaning.toLowerCase().includes(query)
         )];
-        console.log(`Found ${this._results.length} results`);
         this.requestUpdate();
       }
     } catch (error) {
       console.error("Failed to load dictionary:", error);
     } finally {
-      this._loading = false;
+      if (seq === this._searchSeq) {
+        this._loading = false;
+      }
     }
   }
 }

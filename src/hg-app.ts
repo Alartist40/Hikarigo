@@ -148,6 +148,8 @@ export class HGApp extends LitElement {
         return html`
           <h1>Review</h1>
           <hg-review-view></hg-review-view>
+          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Collection</h2>
+          <hg-vocab-view></hg-vocab-view>
         `;
       case '#dictionary':
         return html`

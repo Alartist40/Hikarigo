@@ -54,19 +54,31 @@ export class HGReaderView extends LitElement {
   content = "Welcome to HikariGo. This is a special project for learning English. Tap on any word to see its translation.";
 
   render() {
-    const words = this.content.split(' ');
+    // Better tokenization that preserves punctuation
+    const tokens = this.content.match(/(\w+['']?\w*|[,.!?;:])/g) || [];
     return html`
       <hg-card>
         <h2>Daily Reading</h2>
         <div class="text">
-          ${words.map(word => html`<span class="word" @click=${() => this._handleWordClick(word)}>${word}</span> `)}
+          ${tokens.map(token => {
+            const isWord = /\w/.test(token);
+            return isWord
+              ? html`<span class="word" @click=${() => this._handleWordClick(token)}>${token}</span> `
+              : html`<span>${token} </span>`;
+          })}
         </div>
         <div class="controls">
           <hg-button primary active .glow=${true} @click=${this._addToSRS}>Add to SRS</hg-button>
-          <hg-button>Listen</hg-button>
+          <hg-button @click=${this._listen}>Listen</hg-button>
         </div>
       </hg-card>
     `;
+  }
+
+  private _listen() {
+    const utterance = new SpeechSynthesisUtterance(this.content);
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
   }
 
   private _handleWordClick(word: string) {

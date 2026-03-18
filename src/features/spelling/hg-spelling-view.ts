@@ -51,12 +51,13 @@ export class HGSpellingView extends LitElement {
 
           <input
             type="text"
+            aria-label="Type the word you hear"
             .value=${this._userInput}
             @input=${this._handleInput}
             placeholder="Type word..."
           />
 
-          <div class="feedback ${this._feedback === 'Correct!' ? 'success' : 'error'}">
+          <div class="feedback ${this._feedback ? (this._feedback === 'Correct!' ? 'success' : 'error') : ''}">
             ${this._feedback}
           </div>
 
