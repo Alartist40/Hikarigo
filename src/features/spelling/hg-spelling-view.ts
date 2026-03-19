@@ -104,6 +104,7 @@ export class HGSpellingView extends LitElement {
               placeholder="••••••"
               spellcheck="false"
               autocomplete="off"
+              ?disabled=${this._isCorrectForCurrentWord}
             />
           </div>
 

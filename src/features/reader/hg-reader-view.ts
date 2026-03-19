@@ -49,10 +49,14 @@ export class HGReaderView extends LitElement {
       transition: all 0.2s ease;
       display: inline-block;
       margin: 1px 0;
+      outline: none;
     }
-    .word:hover {
+    .word:hover, .word:focus-visible {
       background-color: var(--hg-primary-light);
       color: var(--hg-primary);
+    }
+    .word:focus-visible {
+      box-shadow: 0 0 0 2px var(--hg-primary);
     }
     .controls {
       display: flex;
@@ -133,7 +137,13 @@ export class HGReaderView extends LitElement {
           ${tokens.map(token => {
             const isWord = /\w/.test(token);
             return isWord
-              ? html`<span class="word" @click=${() => this._handleWordClick(token)}>${token}</span> `
+              ? html`<span class="word"
+                           tabindex="0"
+                           role="button"
+                           aria-label="Translate ${token}"
+                           @click=${() => this._handleWordClick(token)}
+                           @keydown=${(e: KeyboardEvent) => (e.key === 'Enter' || e.key === ' ') && this._handleWordClick(token)}
+                           >${token}</span> `
               : html`<span>${token} </span>`;
           })}
         </div>

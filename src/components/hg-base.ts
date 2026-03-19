@@ -116,16 +116,25 @@ export class HGCard extends LitElement {
     }
   `;
 
-  connectedCallback() {
-    super.connectedCallback();
-    if (this.interactive) {
-      this.tabIndex = 0;
-      this.role = 'button';
-      this.addEventListener('keydown', this._handleKeyDown);
+  updated(changedProperties: Map<string, any>) {
+    if (changedProperties.has('interactive')) {
+      if (this.interactive) {
+        this.tabIndex = 0;
+        this.role = 'button';
+      } else {
+        this.removeAttribute('tabindex');
+        this.removeAttribute('role');
+      }
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('keydown', this._handleKeyDown);
+  }
+
   private _handleKeyDown(e: KeyboardEvent) {
+    if (!this.interactive) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       this.click();
