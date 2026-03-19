@@ -74,12 +74,8 @@ export class HGReaderView extends LitElement {
     }
   `;
 
-  async connectedCallback() {
-    super.connectedCallback();
-    await this._loadReadings();
-  }
-
-  // We need to reload when the level changes
+  // Only trigger load on level changes. connectedCallback triggers an update
+  // with the initial property values, so this handles the initial load too.
   updated(changedProperties: Map<string, any>) {
     if (changedProperties.has('level')) {
       this._loadReadings();
