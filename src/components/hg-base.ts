@@ -10,58 +10,62 @@ export class HGButton extends LitElement {
   active = false;
 
   @property({ type: Boolean })
-  glow = false;
+  secondary = false;
 
   static styles = css`
     :host {
       display: inline-block;
     }
     button {
-      background-color: var(--hg-bg-base);
-      border: none;
-      border-radius: var(--hg-radius-pill);
-      padding: 0.75rem 1.5rem;
+      background-color: var(--hg-card-bg);
+      border: 1px solid var(--hg-border-color);
+      border-radius: var(--hg-radius-inner);
+      padding: 0.75rem 1.25rem;
       font-family: inherit;
-      font-weight: 700;
-      color: var(--hg-text-secondary);
+      font-weight: 600;
+      color: var(--hg-text-primary);
       cursor: pointer;
-      box-shadow: var(--hg-shadow-outer);
-      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: var(--hg-shadow-sm);
+      transition: all 0.2s ease;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       outline: none;
+      width: 100%;
       -webkit-tap-highlight-color: transparent;
     }
     button:hover {
-      box-shadow: 12px 12px 20px #BABECC, -12px -12px 20px #FFFFFF;
-      color: var(--hg-text-primary);
+      background-color: var(--hg-bg-base);
+      border-color: var(--hg-text-secondary);
+      box-shadow: var(--hg-shadow);
     }
-    button:active, button.active {
-      box-shadow: var(--hg-shadow-active);
-      color: var(--hg-primary);
+    button:active {
+      transform: translateY(1px);
     }
     button.primary {
       color: white;
       background-color: var(--hg-primary);
-      box-shadow: 6px 6px 12px rgba(107, 142, 159, 0.4), -6px -6px 12px #FFFFFF;
+      border-color: var(--hg-primary);
     }
     button.primary:hover {
-      box-shadow: 0 0 20px rgba(107, 142, 159, 0.5), 8px 8px 16px rgba(107, 142, 159, 0.3), -8px -8px 16px #FFFFFF;
+      background-color: #2563EB; /* Darker blue */
+      border-color: #2563EB;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
     }
-    button.glow {
-      box-shadow: var(--hg-glow), 6px 6px 12px rgba(232, 165, 152, 0.4);
-      background-color: var(--hg-accent);
-      color: white;
+    button.secondary {
+      background-color: var(--hg-primary-light);
+      color: var(--hg-primary);
+      border-color: transparent;
     }
-    button.glow:hover {
-      box-shadow: var(--hg-glow), 0 0 25px rgba(232, 165, 152, 0.6), 8px 8px 16px rgba(232, 165, 152, 0.4);
+    button.secondary:hover {
+      background-color: #DBEAFE;
     }
   `;
 
   render() {
     return html`
-      <button class="${this.primary ? 'primary' : ''} ${this.active ? 'active' : ''} ${this.glow ? 'glow' : ''}">
+      <button class="${this.primary ? 'primary' : ''} ${this.active ? 'active' : ''} ${this.secondary ? 'secondary' : ''}">
         <slot></slot>
       </button>
     `;
@@ -70,19 +74,32 @@ export class HGButton extends LitElement {
 
 @customElement('hg-card')
 export class HGCard extends LitElement {
+  @property({ type: Boolean })
+  interactive = false;
+
+  @property({ type: Boolean })
+  bento = false;
+
   static styles = css`
     :host {
       display: block;
-      background-color: var(--hg-bg-base);
+      background-color: var(--hg-card-bg);
       border-radius: var(--hg-radius-card);
       padding: 1.5rem;
-      box-shadow: var(--hg-shadow-outer);
-      margin-bottom: 1.5rem;
-      max-width: 100%;
-      overflow-wrap: break-word;
+      box-shadow: var(--hg-shadow);
+      border: 1px solid var(--hg-border-color);
+      transition: all 0.25s ease;
+      overflow: hidden;
+      position: relative;
     }
-    :host(.inner) {
-      box-shadow: var(--hg-shadow-inner);
+    :host([interactive]:hover) {
+      transform: translateY(-4px);
+      box-shadow: var(--hg-shadow-lg);
+      border-color: var(--hg-primary);
+    }
+    :host([bento]) {
+      height: 100%;
+      margin-bottom: 0;
     }
   `;
 
