@@ -79,10 +79,10 @@ export class HGButton extends LitElement {
 
 @customElement('hg-card')
 export class HGCard extends LitElement {
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   interactive = false;
 
-  @property({ type: Boolean })
+  @property({ type: Boolean, reflect: true })
   bento = false;
 
   static styles = css`
@@ -97,16 +97,40 @@ export class HGCard extends LitElement {
       overflow: hidden;
       position: relative;
     }
-    :host([interactive]:hover) {
+    :host([interactive]) {
+      cursor: pointer;
+      outline: none;
+    }
+    :host([interactive]:hover), :host([interactive]:focus-visible) {
       transform: translateY(-4px);
       box-shadow: var(--hg-shadow-lg);
       border-color: var(--hg-primary);
+    }
+    :host([interactive]:focus-visible) {
+      outline: 2px solid var(--hg-primary);
+      outline-offset: 4px;
     }
     :host([bento]) {
       height: 100%;
       margin-bottom: 0;
     }
   `;
+
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.interactive) {
+      this.tabIndex = 0;
+      this.role = 'button';
+      this.addEventListener('keydown', this._handleKeyDown);
+    }
+  }
+
+  private _handleKeyDown(e: KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      this.click();
+    }
+  }
 
   render() {
     return html`<slot></slot>`;

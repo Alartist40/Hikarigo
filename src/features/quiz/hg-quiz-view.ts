@@ -21,6 +21,8 @@ interface Quiz {
 
 @customElement('hg-quiz-view')
 export class HGQuizView extends LitElement {
+  private _quizzesRequestId = 0;
+
   @state()
   private _quizzes: Quiz[] = [];
 
@@ -72,10 +74,19 @@ export class HGQuizView extends LitElement {
       display: flex;
       align-items: center;
       gap: 1rem;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      font-size: inherit;
+      outline: none;
     }
-    .option:hover:not(.disabled) {
+    .option:hover:not(.disabled), .option:focus-visible:not(.disabled) {
       border-color: var(--hg-primary);
       background-color: var(--hg-primary-light);
+    }
+    .option:focus-visible:not(.disabled) {
+      outline: 2px solid var(--hg-primary);
+      outline-offset: 2px;
     }
     .option.selected {
       border-color: var(--hg-primary);
@@ -134,14 +145,23 @@ export class HGQuizView extends LitElement {
   }
 
   private async _loadQuizzes() {
+    const requestId = ++this._quizzesRequestId;
+    this._quizzes = [];
+    this._currentQuiz = null;
+    this._finished = false;
+    this._selectedOption = null;
+    this._showExplanation = false;
+
     try {
       const response = await fetch(`./content/levels/${this.level}/quizzes.json`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Failed to fetch quizzes`);
       }
-      this._quizzes = await response.json();
-      this._currentQuiz = null;
+      const quizzes = await response.json();
+      if (requestId !== this._quizzesRequestId) return;
+      this._quizzes = quizzes;
     } catch (e) {
+      if (requestId !== this._quizzesRequestId) return;
       console.error(`Failed to load quizzes for level ${this.level}`, e);
       this._quizzes = [];
     }
@@ -201,12 +221,14 @@ export class HGQuizView extends LitElement {
 
         <div class="options">
           ${question.options?.map(opt => html`
-            <div class="option ${this._getOptionClass(opt)} ${this._showExplanation ? 'disabled' : ''}" @click=${() => this._handleOptionClick(opt)}>
+            <button class="option ${this._getOptionClass(opt)} ${this._showExplanation ? 'disabled' : ''}"
+                    ?disabled=${this._showExplanation}
+                    @click=${() => this._handleOptionClick(opt)}>
               <div style="width: 24px; height: 24px; border-radius: 50%; border: 2px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; flex-shrink: 0">
                  ${this._getOptionIndicator(opt)}
               </div>
               ${opt}
-            </div>
+            </button>
           `)}
         </div>
 

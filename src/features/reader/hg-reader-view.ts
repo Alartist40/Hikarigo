@@ -12,6 +12,8 @@ interface Reading {
 
 @customElement('hg-reader-view')
 export class HGReaderView extends LitElement {
+  private _readingsRequestId = 0;
+
   @state()
   private _readings: Reading[] = [];
 
@@ -81,14 +83,20 @@ export class HGReaderView extends LitElement {
   }
 
   private async _loadReadings() {
+    const requestId = ++this._readingsRequestId;
+    this._readings = [];
+    this._currentReading = null;
+
     try {
       const response = await fetch(`./content/levels/${this.level}/readings.json`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Failed to fetch readings`);
       }
-      this._readings = await response.json();
-      this._currentReading = null; // Reset current reading when level changes
+      const readings = await response.json();
+      if (requestId !== this._readingsRequestId) return;
+      this._readings = readings;
     } catch (e) {
+      if (requestId !== this._readingsRequestId) return;
       console.error(`Failed to load readings for level ${this.level}`, e);
       this._readings = [];
     }
