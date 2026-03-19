@@ -136,10 +136,14 @@ export class HGQuizView extends LitElement {
   private async _loadQuizzes() {
     try {
       const response = await fetch(`./content/levels/${this.level}/quizzes.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: Failed to fetch quizzes`);
+      }
       this._quizzes = await response.json();
       this._currentQuiz = null;
     } catch (e) {
       console.error(`Failed to load quizzes for level ${this.level}`, e);
+      this._quizzes = [];
     }
   }
 
@@ -166,10 +170,12 @@ export class HGQuizView extends LitElement {
     }
 
     if (this._finished) {
+        const total = this._currentQuiz.questions.length;
+        const percentage = total > 0 ? Math.round((this._score / total) * 100) : 0;
         return html`
             <div class="score-view">
                 <div class="score-circle">
-                    ${Math.round((this._score / this._currentQuiz.questions.length) * 100)}%
+                    ${percentage}%
                 </div>
                 <h2 style="margin: 0 0 0.5rem">Quiz Complete!</h2>
                 <p style="color: var(--hg-text-secondary)">You scored ${this._score} / ${this._currentQuiz.questions.length} correct.</p>

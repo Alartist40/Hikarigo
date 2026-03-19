@@ -83,10 +83,14 @@ export class HGReaderView extends LitElement {
   private async _loadReadings() {
     try {
       const response = await fetch(`./content/levels/${this.level}/readings.json`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: Failed to fetch readings`);
+      }
       this._readings = await response.json();
       this._currentReading = null; // Reset current reading when level changes
     } catch (e) {
       console.error(`Failed to load readings for level ${this.level}`, e);
+      this._readings = [];
     }
   }
 

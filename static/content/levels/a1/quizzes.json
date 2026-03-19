@@ -986,7 +986,7 @@
       {
         "id": "q71",
         "type": "multiple-choice",
-        "question": "The shepherd _______ after the lost sheep.",
+        "question": "The shepherd _______ for the lost sheep.",
         "options": [
           "looked",
           "searched",
@@ -994,7 +994,7 @@
           "saw"
         ],
         "correctAnswer": "searched",
-        "explanation": "Phrasal verb \"look after\" vs. \"search for\". \"Look after\" = care for. \"Search for\" = try to find. Context = searching.",
+        "explanation": "Phrasal verb \"look after\" vs. \"search for\". \"Look after\" = care for. \"Search for\" = try to find. Context = searching, so \"searched\" fits with \"for\".",
         "japanese": "search for = 探す。look after = 世話する。"
       },
       {
@@ -1084,7 +1084,7 @@
       {
         "id": "q78",
         "type": "multiple-choice",
-        "question": "The story has a deep message.",
+        "question": "The story has a deep _______.",
         "options": [
           "message",
           "letter",

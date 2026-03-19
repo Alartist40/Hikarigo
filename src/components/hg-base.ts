@@ -35,6 +35,11 @@ export class HGButton extends LitElement {
       width: 100%;
       -webkit-tap-highlight-color: transparent;
     }
+    button:focus-visible {
+      outline: 2px solid var(--hg-primary);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px var(--hg-primary-light);
+    }
     button:hover {
       background-color: var(--hg-bg-base);
       border-color: var(--hg-text-secondary);

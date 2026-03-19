@@ -86,6 +86,15 @@ export class HGApp extends LitElement {
       text-transform: uppercase;
       margin-left: 0.5rem;
     }
+    .level-picker {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .level-picker > hg-button {
+      flex: 1 1 8rem;
+    }
     main {
       flex: 1;
       overflow-y: auto;
@@ -125,7 +134,18 @@ export class HGApp extends LitElement {
         height: calc(100vh - 70px);
       }
       header {
-        padding: 0 1rem;
+        height: auto;
+        min-height: var(--hg-header-height);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      .user-stats {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
       }
       main {
         padding: 1rem;
@@ -237,7 +257,7 @@ export class HGApp extends LitElement {
           <div style="margin-bottom: 2rem">
              <hg-card>
                 <div style="font-size: 0.8rem; color: var(--hg-primary); font-weight: 700; margin-bottom: 0.75rem">CHOOSE YOUR LEVEL</div>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1rem">
+                <div class="level-picker">
                    <hg-button .primary=${this._selectedLevel === 'a1'} .active=${this._selectedLevel === 'a1'} .secondary=${this._selectedLevel !== 'a1'} @click=${() => this._selectedLevel = 'a1'}>Level A1</hg-button>
                    <hg-button .primary=${this._selectedLevel === 'a2'} .active=${this._selectedLevel === 'a2'} .secondary=${this._selectedLevel !== 'a2'} @click=${() => this._selectedLevel = 'a2'}>Level A2</hg-button>
                    <hg-button .primary=${this._selectedLevel === 'b1'} .active=${this._selectedLevel === 'b1'} .secondary=${this._selectedLevel !== 'b1'} @click=${() => this._selectedLevel = 'b1'}>Level B1</hg-button>
@@ -253,7 +273,7 @@ export class HGApp extends LitElement {
           <div style="margin-bottom: 2rem">
              <hg-card>
                 <div style="font-size: 0.8rem; color: var(--hg-primary); font-weight: 700; margin-bottom: 0.75rem">CHOOSE YOUR LEVEL</div>
-                <div style="display: flex; gap: 1rem; margin-bottom: 1rem">
+                <div class="level-picker">
                    <hg-button .primary=${this._selectedLevel === 'a1'} .active=${this._selectedLevel === 'a1'} .secondary=${this._selectedLevel !== 'a1'} @click=${() => this._selectedLevel = 'a1'}>Level A1</hg-button>
                    <hg-button .primary=${this._selectedLevel === 'a2'} .active=${this._selectedLevel === 'a2'} .secondary=${this._selectedLevel !== 'a2'} @click=${() => this._selectedLevel = 'a2'}>Level A2</hg-button>
                    <hg-button .primary=${this._selectedLevel === 'b1'} .active=${this._selectedLevel === 'b1'} .secondary=${this._selectedLevel !== 'b1'} @click=${() => this._selectedLevel = 'b1'}>Level B1</hg-button>
@@ -303,8 +323,13 @@ export class HGApp extends LitElement {
           </div>
         `;
       default:
-        window.location.hash = '#home';
-        return html``;
+        return html`
+          <hg-card>
+             <h2>Page Not Found</h2>
+             <p>The requested section does not exist.</p>
+             <hg-button primary active @click=${() => window.location.hash = '#home'}>Go Home</hg-button>
+          </hg-card>
+        `;
     }
   }
 }

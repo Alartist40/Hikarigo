@@ -5,6 +5,8 @@ import { store, updatePoints } from '../../core/store';
 
 @customElement('hg-spelling-view')
 export class HGSpellingView extends LitElement {
+  private _words = ["faith", "grace", "mercy", "peace", "truth", "light", "hope", "love", "spirit", "prayer"];
+
   @state()
   private _word = "faith";
 
@@ -16,6 +18,9 @@ export class HGSpellingView extends LitElement {
 
   @state()
   private _status: 'idle' | 'correct' | 'wrong' = 'idle';
+
+  @state()
+  private _isCorrectForCurrentWord = false;
 
   static styles = css`
     .container {
@@ -122,8 +127,10 @@ export class HGSpellingView extends LitElement {
 
   private _handleInput(e: Event) {
     this._userInput = (e.target as HTMLInputElement).value.toLowerCase();
-    this._status = 'idle';
-    this._feedback = "";
+    if (this._status !== 'correct') {
+      this._status = 'idle';
+      this._feedback = "";
+    }
   }
 
   private _handleKeyUp(e: KeyboardEvent) {
@@ -133,23 +140,25 @@ export class HGSpellingView extends LitElement {
   }
 
   private _checkSpelling() {
-    if (!this._userInput) return;
+    if (!this._userInput || this._isCorrectForCurrentWord) return;
 
     if (this._userInput.trim() === this._word.toLowerCase()) {
       this._feedback = "Excellent! +5 pts";
       this._status = 'correct';
+      this._isCorrectForCurrentWord = true;
 
       // Award session points
       updatePoints(5);
 
-      // Auto-reset after a delay for next word (in a real app)
+      // Change word after a delay
       setTimeout(() => {
-        if (this._status === 'correct') {
-          this._userInput = "";
-          this._status = 'idle';
-          this._feedback = "";
-          // In a real app, change the word here
-        }
+        const currentIndex = this._words.indexOf(this._word);
+        const nextIndex = (currentIndex + 1) % this._words.length;
+        this._word = this._words[nextIndex];
+        this._userInput = "";
+        this._status = 'idle';
+        this._feedback = "";
+        this._isCorrectForCurrentWord = false;
       }, 2000);
 
     } else {
