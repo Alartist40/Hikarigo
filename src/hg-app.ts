@@ -1,22 +1,22 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import type { AppState } from './core/store';
 import { store } from './core/store';
-import { Router } from './core/router';
 import './components/hg-nav';
 import './features/reader/hg-reader-view';
-import './features/vocab/hg-vocab-view';
 import './features/dictionary/hg-dict-search';
 import './features/spelling/hg-spelling-view';
+import './features/quiz/hg-quiz-view';
 import './components/hg-base';
 import './styles/tokens.css';
-
-const USER_ICON = html`<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--hg-primary)"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
 
 @customElement('hg-app')
 export class HGApp extends LitElement {
   @property({ type: Object })
   state: AppState = store.getState();
+
+  @state()
+  private _selectedLevel: 'a1' | 'a2' | 'b1' = 'a1';
 
   connectedCallback() {
     super.connectedCallback();
@@ -36,148 +36,298 @@ export class HGApp extends LitElement {
   static styles = css`
     :host {
       display: flex;
-      flex-direction: column;
       height: 100vh;
-      width: 100%;
-      font-family: var(--hg-font-main);
+      width: 100vw;
       background-color: var(--hg-bg-base);
-      color: var(--hg-text-primary);
       overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      height: 100%;
     }
     header {
-      padding: 3rem 1rem 1.5rem;
-      text-align: center;
+      height: var(--hg-header-height);
+      background-color: var(--hg-card-bg);
+      border-bottom: 1px solid var(--hg-border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
       flex-shrink: 0;
     }
-    .logo {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: 0.3rem;
-      color: var(--hg-primary);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      text-shadow: 2px 2px 4px #BABECC, -1px -1px 2px #FFFFFF;
+    .user-stats {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
     }
-    .tagline {
-      font-size: 0.75rem;
-      color: var(--hg-text-secondary);
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--hg-primary-light);
+      padding: 0.4rem 1rem;
+      border-radius: var(--hg-radius-pill);
+      color: var(--hg-primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .level-badge {
+      background-color: var(--hg-accent);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.15rem;
-      opacity: 0.7;
+      margin-left: 0.5rem;
+    }
+    .level-picker {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .level-picker > hg-button {
+      flex: 1 1 8rem;
     }
     main {
       flex: 1;
       overflow-y: auto;
-      padding: 1rem;
-      padding-bottom: 10rem; /* Space for the floating nav bar */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 2rem;
     }
-    .container {
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-auto-rows: minmax(160px, auto);
+      gap: 1.5rem;
       width: 100%;
-      max-width: 600px;
-      padding: 0 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .bento-item-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .bento-item-wide {
+      grid-column: span 2;
     }
     h1 {
-      font-size: 1.1rem;
-      margin: 1rem 0 2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2rem;
-      color: var(--hg-text-secondary);
-      text-align: center;
-      width: 100%;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 0 1.5rem;
+      color: var(--hg-text-primary);
     }
-    .profile-card-content {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-    .profile-avatar {
-      width: 5rem;
-      height: 5rem;
-      border-radius: 50%;
-      box-shadow: var(--hg-shadow-inner);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--hg-bg-base);
-    }
-    /* Simple fade-in animation for page transitions */
     .route-container {
-      animation: fadeIn 0.4s ease-out;
       width: 100%;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      :host {
+        flex-direction: column;
+      }
+      .content-area {
+        height: calc(100vh - 70px);
+      }
+      header {
+        height: auto;
+        min-height: var(--hg-header-height);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+      }
+      .user-stats {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+      main {
+        padding: 1rem;
+        padding-bottom: 5rem;
+      }
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+      .bento-item-large, .bento-item-wide {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
     }
   `;
 
   render() {
     return html`
-      <header>
-        <div class="logo">HikariGo</div>
-        <div class="tagline">Light Language Learning</div>
-      </header>
-      <main>
-        <div class="container">
-          <div class="route-container" key=${this.state.currentRoute}>
+      <hg-nav .currentRoute=${this.state.currentRoute}></hg-nav>
+      <div class="content-area">
+        <header>
+          <div style="font-weight: 600; color: var(--hg-text-secondary); text-transform: uppercase; letter-spacing: 0.05rem; font-size: 0.8rem">
+             ${this._getRouteTitle()}
+          </div>
+          <div class="user-stats">
+            <div class="stat-pill">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              ${this.state.points} pts
+            </div>
+            <div style="font-weight: 700; color: var(--hg-text-primary); display: flex; align-items: center">
+              LEVEL ${this.state.level}
+              <div class="level-badge">Explorer</div>
+            </div>
+          </div>
+        </header>
+        <main>
+          <div class="route-container">
             ${this._renderRoute()}
           </div>
-        </div>
-      </main>
-      <hg-nav .currentRoute=${this.state.currentRoute}></hg-nav>
+        </main>
+      </div>
     `;
+  }
+
+  private _getRouteTitle() {
+    const route = this.state.currentRoute;
+    if (route === '#home') return 'Dashboard';
+    if (route === '#study') return 'Study Center';
+    if (route === '#dictionary') return 'Vocabulary Reference';
+    if (route === '#train') return 'Practice Arena';
+    if (route === '#settings') return 'Preferences';
+    return 'HikariGo';
   }
 
   private _renderRoute() {
     switch (this.state.currentRoute) {
       case '#home':
         return html`
-          <h1>Home</h1>
-          <hg-card>
-            <p style="line-height: 1.6">Welcome back to HikariGo! Continue your journey into the English language with our focused, light, and distraction-free environment.</p>
-            <hg-button primary active .glow=${true} style="margin-top: 1.5rem; width: 100%; justify-content: center" @click=${() => Router.navigate('#learn')}>Continue Learning</hg-button>
-          </hg-card>
-          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Quick Practice</h2>
-          <hg-spelling-view></hg-spelling-view>
+          <h1>Welcome to HikariGo</h1>
+          <div class="bento-grid">
+            <hg-card bento class="bento-item-large" interactive @click=${() => window.location.hash = '#study'}>
+              <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between">
+                <div>
+                   <div style="color: var(--hg-primary); margin-bottom: 1rem">
+                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                   </div>
+                   <h2 style="margin: 0 0 0.5rem">Start Studying</h2>
+                   <p style="color: var(--hg-text-secondary); margin: 0">Explore reading passages and grammar guides organized by levels.</p>
+                </div>
+                <hg-button primary style="width: fit-content">Resume Level 1</hg-button>
+              </div>
+            </hg-card>
+
+            <hg-card bento interactive @click=${() => window.location.hash = '#train'}>
+              <h3 style="margin: 0 0 0.5rem">Daily Drill</h3>
+              <p style="color: var(--hg-text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem">Test your spelling and grammar knowledge.</p>
+              <hg-button secondary>Start Training</hg-button>
+            </hg-card>
+
+            <hg-card bento>
+               <h3 style="margin: 0 0 0.5rem">Your Progress</h3>
+               <div style="margin: 1rem 0">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.5rem">
+                    <span>Next Level</span>
+                    <span>${this.state.points}/100</span>
+                  </div>
+                  <div style="width: 100%; height: 8px; background-color: var(--hg-primary-light); border-radius: 4px; overflow: hidden">
+                    <div style="width: ${this.state.points}%; height: 100%; background-color: var(--hg-primary)"></div>
+                  </div>
+               </div>
+               <p style="font-size: 0.8rem; color: var(--hg-text-secondary)">Earn points by completing quizzes and reading new texts.</p>
+            </hg-card>
+
+            <hg-card bento class="bento-item-wide" interactive @click=${() => window.location.hash = '#dictionary'}>
+               <div style="display: flex; align-items: center; gap: 1.5rem">
+                  <div style="color: var(--hg-accent)">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  </div>
+                  <div>
+                    <h3 style="margin: 0">Quick Dictionary</h3>
+                    <p style="color: var(--hg-text-secondary); font-size: 0.9rem; margin: 0">Search over 2,000 common English words.</p>
+                  </div>
+               </div>
+            </hg-card>
+          </div>
         `;
-      case '#learn':
-        return html`<h1>Learn</h1><hg-reader-view></hg-reader-view>`;
-      case '#review':
+      case '#study':
         return html`
-          <h1>Review</h1>
-          <hg-review-view></hg-review-view>
-          <h2 style="font-size: 0.9rem; text-transform: uppercase; margin: 2rem 0 1rem; text-align: center; opacity: 0.6">Collection</h2>
-          <hg-vocab-view></hg-vocab-view>
+          <h1>Study Lessons</h1>
+          <div style="margin-bottom: 2rem">
+             <hg-card>
+                <div style="font-size: 0.8rem; color: var(--hg-primary); font-weight: 700; margin-bottom: 0.75rem">CHOOSE YOUR LEVEL</div>
+                <div class="level-picker">
+                   <hg-button .primary=${this._selectedLevel === 'a1'} .active=${this._selectedLevel === 'a1'} .secondary=${this._selectedLevel !== 'a1'} @click=${() => this._selectedLevel = 'a1'}>Level A1</hg-button>
+                   <hg-button .primary=${this._selectedLevel === 'a2'} .active=${this._selectedLevel === 'a2'} .secondary=${this._selectedLevel !== 'a2'} @click=${() => this._selectedLevel = 'a2'}>Level A2</hg-button>
+                   <hg-button .primary=${this._selectedLevel === 'b1'} .active=${this._selectedLevel === 'b1'} .secondary=${this._selectedLevel !== 'b1'} @click=${() => this._selectedLevel = 'b1'}>Level B1</hg-button>
+                </div>
+                <p style="color: var(--hg-text-secondary); font-size: 0.9rem">Currently viewing lessons for level ${this._selectedLevel.toUpperCase()}.</p>
+             </hg-card>
+          </div>
+          <hg-reader-view .level=${this._selectedLevel}></hg-reader-view>
+        `;
+      case '#train':
+        return html`
+          <h1>Training Arena</h1>
+          <div style="margin-bottom: 2rem">
+             <hg-card>
+                <div style="font-size: 0.8rem; color: var(--hg-primary); font-weight: 700; margin-bottom: 0.75rem">CHOOSE YOUR LEVEL</div>
+                <div class="level-picker">
+                   <hg-button .primary=${this._selectedLevel === 'a1'} .active=${this._selectedLevel === 'a1'} .secondary=${this._selectedLevel !== 'a1'} @click=${() => this._selectedLevel = 'a1'}>Level A1</hg-button>
+                   <hg-button .primary=${this._selectedLevel === 'a2'} .active=${this._selectedLevel === 'a2'} .secondary=${this._selectedLevel !== 'a2'} @click=${() => this._selectedLevel = 'a2'}>Level A2</hg-button>
+                   <hg-button .primary=${this._selectedLevel === 'b1'} .active=${this._selectedLevel === 'b1'} .secondary=${this._selectedLevel !== 'b1'} @click=${() => this._selectedLevel = 'b1'}>Level B1</hg-button>
+                </div>
+                <p style="color: var(--hg-text-secondary); font-size: 0.9rem">Currently practicing at level ${this._selectedLevel.toUpperCase()}.</p>
+             </hg-card>
+          </div>
+          <div class="bento-grid">
+             <div class="bento-item-wide">
+                <hg-quiz-view .level=${this._selectedLevel}></hg-quiz-view>
+             </div>
+             <div class="bento-item-wide">
+                <hg-spelling-view></hg-spelling-view>
+             </div>
+          </div>
         `;
       case '#dictionary':
         return html`
-          <h1>Dictionary</h1>
+          <h1>Dictionary Search</h1>
           <hg-dict-search></hg-dict-search>
         `;
-      case '#profile':
+      case '#settings':
         return html`
-          <h1>Profile</h1>
-          <hg-card>
-            <div class="profile-card-content">
-              <div class="profile-avatar">
-                ${USER_ICON}
-              </div>
-              <div>
-                <div style="font-weight: 700; font-size: 1.3rem; margin-bottom: 0.2rem">Learner Hika</div>
-                <div style="font-size: 0.9rem; color: var(--hg-text-secondary); letter-spacing: 0.08rem">LEVEL 5 · 2,450 XP</div>
-              </div>
-            </div>
-          </hg-card>
+          <h1>Preferences</h1>
+          <div class="bento-grid">
+            <hg-card bento>
+               <h3 style="margin: 0 0 1rem">App Settings</h3>
+               <div style="display: flex; flex-direction: column; gap: 1rem">
+                  <div style="display: flex; justify-content: space-between">
+                     <span>Theme</span>
+                     <span style="font-weight: 700; color: var(--hg-primary)">Light (Flat)</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between">
+                     <span>Language</span>
+                     <span style="font-weight: 700; color: var(--hg-primary)">English / Japanese</span>
+                  </div>
+               </div>
+            </hg-card>
+            <hg-card bento>
+               <h3 style="margin: 0 0 1rem">About HikariGo</h3>
+               <p style="font-size: 0.9rem; color: var(--hg-text-secondary); line-height: 1.5">
+                  HikariGo is an open-source platform for learning English through Biblical content.
+                  Designed for distraction-free study.
+               </p>
+               <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--hg-text-secondary)">Version 0.2.0 (Bento)</div>
+            </hg-card>
+          </div>
         `;
       default:
-        // Default to home if route not found
         return html`
-          <h1>Home</h1>
           <hg-card>
-             <p>Returning home...</p>
+             <h2>Page Not Found</h2>
+             <p>The requested section does not exist.</p>
+             <hg-button primary active @click=${() => window.location.hash = '#home'}>Go Home</hg-button>
           </hg-card>
         `;
     }

@@ -1,0 +1,1408 @@
+[
+  {
+    "id": "a1-quiz-bible-grammar",
+    "title": "Bible Grammar Quiz (A1-A2)",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "Every morning, David _______ to God.",
+        "options": [
+          "pray",
+          "prays",
+          "praying",
+          "prayed"
+        ],
+        "correctAnswer": "prays",
+        "explanation": "Present Simple (habits/routines). 3rd person singular adds -s. \"Every morning\" = habit. \"David\" = he/she/it, so verb needs -s.",
+        "japanese": "「毎朝」=習慣。三人称単数は-sが必要。"
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "Yesterday, the disciples _______ across the lake.",
+        "options": [
+          "sail",
+          "sails",
+          "sailing",
+          "sailed"
+        ],
+        "correctAnswer": "sailed",
+        "explanation": "Past Simple (completed actions). Regular verbs add -ed. \"Yesterday\" = finished past time. Regular past tense = sailed.",
+        "japanese": "「昨日」=過去の完了。「ed」で規則的な過去形。"
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "She _______ in the garden now.",
+        "options": [
+          "work",
+          "works",
+          "is working",
+          "worked"
+        ],
+        "correctAnswer": "is working",
+        "explanation": "Present Continuous (happening now). \"Now\" = at this moment. Form: am/is/are + verb-ing.",
+        "japanese": "「今」=進行形。be動詞 + -ing。"
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "Moses _______ the people through the desert many years ago.",
+        "options": [
+          "lead",
+          "leads",
+          "leading",
+          "led"
+        ],
+        "correctAnswer": "led",
+        "explanation": "Past Simple - Irregular verbs. \"Many years ago\" = past. \"Lead\" → \"led\" (irregular, not leaded).",
+        "japanese": "不規則動詞の過去形。lead → led。"
+      },
+      {
+        "id": "q5",
+        "type": "multiple-choice",
+        "question": "The sun _______ in the east every day.",
+        "options": [
+          "rise",
+          "rises",
+          "is rising",
+          "rised"
+        ],
+        "correctAnswer": "rises",
+        "explanation": "Present Simple (universal truths/facts). Universal truth = always true, use present simple. \"Sun\" = it, so -es.",
+        "japanese": "普遍的真実は現在形。三人称なので-es。"
+      },
+      {
+        "id": "q6",
+        "type": "multiple-choice",
+        "question": "Last week, they _______ bread and fish to the crowd.",
+        "options": [
+          "give",
+          "gives",
+          "gave",
+          "given"
+        ],
+        "correctAnswer": "gave",
+        "explanation": "Past Simple - Irregular verbs. \"Last week\" = past. \"Give\" → \"gave\" (irregular).",
+        "japanese": "不規則動詞 give → gave。"
+      },
+      {
+        "id": "q7",
+        "type": "multiple-choice",
+        "question": "Right now, the children _______ songs of praise.",
+        "options": [
+          "sing",
+          "sings",
+          "are singing",
+          "sang"
+        ],
+        "correctAnswer": "are singing",
+        "explanation": "Present Continuous (action in progress). \"Right now\" = at this moment. Form: are + singing.",
+        "japanese": "「今まさに」=進行形。are singing。"
+      },
+      {
+        "id": "q8",
+        "type": "multiple-choice",
+        "question": "Paul usually _______ letters to the churches.",
+        "options": [
+          "write",
+          "writes",
+          "writing",
+          "wrote"
+        ],
+        "correctAnswer": "writes",
+        "explanation": "Present Simple with frequency adverbs. \"Usually\" = habit/routine. \"Paul\" = he, so -s.",
+        "japanese": "「通常」=習慣。三人称単数は-s。"
+      },
+      {
+        "id": "q9",
+        "type": "multiple-choice",
+        "question": "Two thousand years ago, Jesus _______ in Bethlehem.",
+        "options": [
+          "born",
+          "is born",
+          "was born",
+          "were born"
+        ],
+        "correctAnswer": "was born",
+        "explanation": "Past Simple Passive. \"Two thousand years ago\" = past. Passive: was/were + past participle. \"Jesus\" = was.",
+        "japanese": "受動態の過去形。was born = 生まれた。"
+      },
+      {
+        "id": "q10",
+        "type": "multiple-choice",
+        "question": "Martha _______ in the kitchen while Mary listened to Jesus.",
+        "options": [
+          "work",
+          "works",
+          "was working",
+          "worked"
+        ],
+        "correctAnswer": "was working",
+        "explanation": "Past Continuous (background action). \"While\" = two actions happening together. Background action = was working.",
+        "japanese": "過去進行形。while = 〜している間に。"
+      },
+      {
+        "id": "q11",
+        "type": "multiple-choice",
+        "question": "She is reading _______ Bible.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "the",
+        "explanation": "Definite article for unique/specific items. \"The Bible\" = specific, unique book (only one).",
+        "japanese": "特定のもの（唯一無二）には the。"
+      },
+      {
+        "id": "q12",
+        "type": "multiple-choice",
+        "question": "He wants to be _______ good shepherd.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "a",
+        "explanation": "Indefinite article for general description. \"A good shepherd\" = one example of many, not specific.",
+        "japanese": "不特定の「一つの」には a/an。good は子音なので a。"
+      },
+      {
+        "id": "q13",
+        "type": "multiple-choice",
+        "question": "_______ sun is shining today.",
+        "options": [
+          "A",
+          "An",
+          "The",
+          "No article"
+        ],
+        "correctAnswer": "The",
+        "explanation": "Definite article for unique natural phenomena. \"The sun\" = only one sun exists. Always \"the\".",
+        "japanese": "太陽や月など唯一の自然物には the。"
+      },
+      {
+        "id": "q14",
+        "type": "multiple-choice",
+        "question": "They ate _______ apple from the tree.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "an",
+        "explanation": "Indefinite article before vowel sounds. \"An\" before vowel sounds (a-e-i-o-u). Apple starts with 'a' sound.",
+        "japanese": "母音で始まる単語の前は an。"
+      },
+      {
+        "id": "q15",
+        "type": "multiple-choice",
+        "question": "He is _______ honest man.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "an",
+        "explanation": "Article choice by sound, not spelling. \"Honest\" starts with vowel SOUND (silent h: 'onest'), so \"an\".",
+        "japanese": "スペルではなく音で判断。h が無音なので an。"
+      },
+      {
+        "id": "q16",
+        "type": "multiple-choice",
+        "question": "_______ God created the world.",
+        "options": [
+          "A",
+          "An",
+          "The",
+          "No article"
+        ],
+        "correctAnswer": "No article",
+        "explanation": "No article for proper names (God as name). \"God\" used as name = no article. (Compare: \"the god of war\" = specific type).",
+        "japanese": "固有名詞（名前）には冠詞なし。"
+      },
+      {
+        "id": "q17",
+        "type": "multiple-choice",
+        "question": "She found _______ coin that was lost.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "the",
+        "explanation": "Definite article for specific/identified items. \"That was lost\" = specific coin (not any coin). Use \"the\".",
+        "japanese": "特定されたもの（関係詞節で修飾）には the。"
+      },
+      {
+        "id": "q18",
+        "type": "multiple-choice",
+        "question": "He has _______ faith in God.",
+        "options": [
+          "a",
+          "an",
+          "the",
+          "no article"
+        ],
+        "correctAnswer": "no article",
+        "explanation": "No article for abstract uncountable nouns (general). \"Faith\" = abstract concept, uncountable. General sense = no article.",
+        "japanese": "抽象的・不可算名詞（一般的な意味）には冠詞なし。"
+      },
+      {
+        "id": "q19",
+        "type": "multiple-choice",
+        "question": "There is _______ book on _______ table.",
+        "options": [
+          "a / a",
+          "an / the",
+          "a / the",
+          "the / a"
+        ],
+        "correctAnswer": "a / the",
+        "explanation": "First mention (a/an) vs. specific location (the). First mention = \"a book\". Specific object \"table\" (both know which) = \"the table\".",
+        "japanese": "初出は a/an、特定の場所・ものは the。"
+      },
+      {
+        "id": "q20",
+        "type": "multiple-choice",
+        "question": "_______ water in the river is clean.",
+        "options": [
+          "A",
+          "An",
+          "The",
+          "No article"
+        ],
+        "correctAnswer": "The",
+        "explanation": "Definite article for specific instance. \"In the river\" = specific water (not all water in world). Use \"the\".",
+        "japanese": "特定の場所のものには the。"
+      },
+      {
+        "id": "q21",
+        "type": "multiple-choice",
+        "question": "The meeting is _______ 3 o'clock.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "by"
+        ],
+        "correctAnswer": "at",
+        "explanation": "Preposition for specific times. \"At\" for specific clock times (at 3 o'clock, at noon, at midnight).",
+        "japanese": "特定の時刻には at。"
+      },
+      {
+        "id": "q22",
+        "type": "multiple-choice",
+        "question": "They walked _______ the mountain.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "up"
+        ],
+        "correctAnswer": "up",
+        "explanation": "Preposition of direction/movement. \"Up\" = direction toward higher place. \"Walked up the mountain\".",
+        "japanese": "方向を表す前置詞。up = 上へ。"
+      },
+      {
+        "id": "q23",
+        "type": "multiple-choice",
+        "question": "She sat _______ the tree to rest.",
+        "options": [
+          "in",
+          "on",
+          "under",
+          "at"
+        ],
+        "correctAnswer": "under",
+        "explanation": "Preposition of position/location. \"Under\" = below something. Shade/rest = under the tree.",
+        "japanese": "位置関係。under = 〜の下に。"
+      },
+      {
+        "id": "q24",
+        "type": "multiple-choice",
+        "question": "He was born _______ December 25th.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "by"
+        ],
+        "correctAnswer": "on",
+        "explanation": "Preposition for specific dates. \"On\" for specific days and dates (on Monday, on December 25th).",
+        "japanese": "特定の日付には on。"
+      },
+      {
+        "id": "q25",
+        "type": "multiple-choice",
+        "question": "The book is _______ the shelf.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "under"
+        ],
+        "correctAnswer": "on",
+        "explanation": "Preposition of position (surface contact). \"On\" = touching a surface. Books rest on shelves.",
+        "japanese": "表面に接している場合は on。"
+      },
+      {
+        "id": "q26",
+        "type": "multiple-choice",
+        "question": "They traveled _______ Jerusalem.",
+        "options": [
+          "in",
+          "on",
+          "to",
+          "at"
+        ],
+        "correctAnswer": "to",
+        "explanation": "Preposition of destination/direction. \"To\" = movement toward a place. \"Travel to Jerusalem\".",
+        "japanese": "目的地には to。"
+      },
+      {
+        "id": "q27",
+        "type": "multiple-choice",
+        "question": "She prayed _______ the morning.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "by"
+        ],
+        "correctAnswer": "in",
+        "explanation": "Preposition for parts of day. \"In\" for general parts of day (in the morning, in the afternoon).",
+        "japanese": "朝・昼・晩には in。"
+      },
+      {
+        "id": "q28",
+        "type": "multiple-choice",
+        "question": "The church is _______ the corner.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "to"
+        ],
+        "correctAnswer": "on",
+        "explanation": "Preposition for specific points/locations. \"On the corner\" = at the intersection point. \"At the corner\" also possible, but \"on\" for surfaces.",
+        "japanese": "on the corner = 角に（表面として）。"
+      },
+      {
+        "id": "q29",
+        "type": "multiple-choice",
+        "question": "He put the lamp _______ the table.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "over"
+        ],
+        "correctAnswer": "on",
+        "explanation": "Preposition of placement (surface). \"On\" = placed upon a surface. Lamp sits on table.",
+        "japanese": "上に置く = on。"
+      },
+      {
+        "id": "q30",
+        "type": "multiple-choice",
+        "question": "They waited _______ the bus stop.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "to"
+        ],
+        "correctAnswer": "at",
+        "explanation": "Preposition for specific points. \"At\" for specific points/locations (at the station, at the door).",
+        "japanese": "特定の地点には at。"
+      },
+      {
+        "id": "q31",
+        "type": "multiple-choice",
+        "question": "_______ am a student of the Word.",
+        "options": [
+          "He",
+          "She",
+          "I",
+          "They"
+        ],
+        "correctAnswer": "I",
+        "explanation": "Subject pronoun with verb \"am\". Only \"I\" pairs with \"am\". (I am, you are, he/she is).",
+        "japanese": "am は I だけに使う。"
+      },
+      {
+        "id": "q32",
+        "type": "multiple-choice",
+        "question": "The teacher spoke to _______.",
+        "options": [
+          "I",
+          "me",
+          "my",
+          "mine"
+        ],
+        "correctAnswer": "me",
+        "explanation": "Object pronoun after preposition. \"To\" = preposition, needs object pronoun (me, you, him, her, us, them).",
+        "japanese": "前置詞の後は目的格（me, him など）。"
+      },
+      {
+        "id": "q33",
+        "type": "multiple-choice",
+        "question": "This book is _______.",
+        "options": [
+          "he",
+          "him",
+          "his",
+          "he's"
+        ],
+        "correctAnswer": "his",
+        "explanation": "Possessive pronoun (no noun after). \"His\" = possessive pronoun (like mine, yours, hers). No noun follows.",
+        "japanese": "所有代名詞 his = 彼のもの。"
+      },
+      {
+        "id": "q34",
+        "type": "multiple-choice",
+        "question": "_______ went to the market together.",
+        "options": [
+          "Me",
+          "Us",
+          "We",
+          "Ours"
+        ],
+        "correctAnswer": "We",
+        "explanation": "Subject pronoun for compound subjects. \"Mary and I\" = we. Subject position needs \"we\" (not us).",
+        "japanese": "主語の位置には主格 we。"
+      },
+      {
+        "id": "q35",
+        "type": "multiple-choice",
+        "question": "She gave the bread to _______.",
+        "options": [
+          "they",
+          "them",
+          "their",
+          "theirs"
+        ],
+        "correctAnswer": "them",
+        "explanation": "Object pronoun after preposition. \"To\" = preposition, needs object pronoun \"them\" (not they).",
+        "japanese": "to の後は目的格 them。"
+      },
+      {
+        "id": "q36",
+        "type": "multiple-choice",
+        "question": "Is this pen _______?",
+        "options": [
+          "you",
+          "your",
+          "yours",
+          "yourself"
+        ],
+        "correctAnswer": "yours",
+        "explanation": "Possessive pronoun (standing alone). \"Yours\" = your pen. Possessive pronoun stands alone (no noun after).",
+        "japanese": "yours = あなたのもの（名詞なし）。"
+      },
+      {
+        "id": "q37",
+        "type": "multiple-choice",
+        "question": "_______ brother is a pastor.",
+        "options": [
+          "Me",
+          "My",
+          "Mine",
+          "Myself"
+        ],
+        "correctAnswer": "My",
+        "explanation": "Possessive adjective (before noun). \"My\" + noun (my brother). Possessive adjective always has noun after.",
+        "japanese": "my + 名詞。所有形容詞。"
+      },
+      {
+        "id": "q38",
+        "type": "multiple-choice",
+        "question": "The disciples followed _______.",
+        "options": [
+          "he",
+          "him",
+          "his",
+          "himself"
+        ],
+        "correctAnswer": "him",
+        "explanation": "Object pronoun after verb. \"Followed\" = verb, needs object pronoun \"him\" (not he).",
+        "japanese": "動詞の後は目的格 him。"
+      },
+      {
+        "id": "q39",
+        "type": "multiple-choice",
+        "question": "She did it by _______.",
+        "options": [
+          "she",
+          "her",
+          "herself",
+          "hers"
+        ],
+        "correctAnswer": "herself",
+        "explanation": "Reflexive pronoun. \"By oneself\" = alone. Reflexive pronouns: myself, yourself, himself, herself, itself, ourselves, yourselves, themselves.",
+        "japanese": "再帰代名詞。by herself = 一人で。"
+      },
+      {
+        "id": "q40",
+        "type": "multiple-choice",
+        "question": "_______ is a beautiful day today.",
+        "options": [
+          "He",
+          "She",
+          "It",
+          "They"
+        ],
+        "correctAnswer": "It",
+        "explanation": "Impersonal \"it\" for weather/time. \"It\" for weather, time, distance. \"It is raining\", \"It is 5 o'clock\".",
+        "japanese": "天気・時間には it を使う。"
+      },
+      {
+        "id": "q41",
+        "type": "multiple-choice",
+        "question": "_______ is your name?",
+        "options": [
+          "What",
+          "Who",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "What",
+        "explanation": "Question word for identification. \"What is your name?\" = asking for information/identity.",
+        "japanese": "名前を尋ねるには what。"
+      },
+      {
+        "id": "q42",
+        "type": "multiple-choice",
+        "question": "_______ did you go yesterday?",
+        "options": [
+          "What",
+          "Who",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "Where",
+        "explanation": "Question word for place. \"Where\" = place/location. \"Where did you go?\"",
+        "japanese": "場所を尋ねるには where。"
+      },
+      {
+        "id": "q43",
+        "type": "multiple-choice",
+        "question": "_______ is that man?",
+        "options": [
+          "What",
+          "Who",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "Who",
+        "explanation": "Question word for person. \"Who\" = person. \"What\" = thing. \"Who is that man?\"",
+        "japanese": "人を尋ねるには who。"
+      },
+      {
+        "id": "q44",
+        "type": "multiple-choice",
+        "question": "_______ do you wake up?",
+        "options": [
+          "What",
+          "Who",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "When",
+        "explanation": "Question word for time. \"When\" = time. Also: \"What time do you wake up?\"",
+        "japanese": "時間を尋ねるには when。"
+      },
+      {
+        "id": "q45",
+        "type": "multiple-choice",
+        "question": "_______ old are you?",
+        "options": [
+          "What",
+          "How",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "How",
+        "explanation": "Question phrase for age/quantity. \"How old\" = age. \"How much/many\" = quantity. \"How often\" = frequency.",
+        "japanese": "how + 形容詞で尋ね方。"
+      },
+      {
+        "id": "q46",
+        "type": "multiple-choice",
+        "question": "_______ you like to read?",
+        "options": [
+          "Do",
+          "Does",
+          "Did",
+          "Are"
+        ],
+        "correctAnswer": "Do",
+        "explanation": "Auxiliary verb for present simple questions. \"Do/Does\" + subject + verb. \"You\" = do (not does).",
+        "japanese": "現在形の疑問文は do/does で始まる。"
+      },
+      {
+        "id": "q47",
+        "type": "multiple-choice",
+        "question": "_______ she singing now?",
+        "options": [
+          "Do",
+          "Does",
+          "Is",
+          "Are"
+        ],
+        "correctAnswer": "Is",
+        "explanation": "Auxiliary verb for present continuous. Present continuous = am/is/are + verb-ing. \"She\" = is.",
+        "japanese": "進行形の疑問文は be動詞で始まる。"
+      },
+      {
+        "id": "q48",
+        "type": "multiple-choice",
+        "question": "_______ did they arrive?",
+        "options": [
+          "What",
+          "How",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "How",
+        "explanation": "Question word for manner/method. \"How\" = way/manner. \"How did they arrive? By bus?\"",
+        "japanese": "方法・様子を尋ねるには how。"
+      },
+      {
+        "id": "q49",
+        "type": "multiple-choice",
+        "question": "_______ books do you have?",
+        "options": [
+          "How much",
+          "How many",
+          "How long",
+          "How old"
+        ],
+        "correctAnswer": "How many",
+        "explanation": "Quantifier for countable nouns. \"How many\" + countable plural (books). \"How much\" + uncountable.",
+        "japanese": "可数名詞には how many。"
+      },
+      {
+        "id": "q50",
+        "type": "multiple-choice",
+        "question": "_______ is the weather today?",
+        "options": [
+          "What",
+          "How",
+          "Where",
+          "When"
+        ],
+        "correctAnswer": "How",
+        "explanation": "Fixed phrase for weather. \"How is the weather?\" or \"What is the weather like?\" Fixed expressions.",
+        "japanese": "天気を尋ねる定型表現。how is the weather?"
+      },
+      {
+        "id": "q51",
+        "type": "multiple-choice",
+        "question": "I need to _______ my homework before class.",
+        "options": [
+          "make",
+          "do",
+          "work",
+          "study"
+        ],
+        "correctAnswer": "do",
+        "explanation": "Collocation: \"do homework\" (not make). Fixed phrases: do homework, do housework, make dinner, make a decision.",
+        "japanese": "do homework = 宿題をする（決まった表現）。"
+      },
+      {
+        "id": "q52",
+        "type": "multiple-choice",
+        "question": "Please _______ down and listen.",
+        "options": [
+          "sit",
+          "seat",
+          "set",
+          "sat"
+        ],
+        "correctAnswer": "sit",
+        "explanation": "Verb form (base form after please). \"Please\" + base verb. \"Sit\" = 座る. \"Seat\" = 座席（名詞）。",
+        "japanese": "please の後は動詞の原形。sit = 座る。"
+      },
+      {
+        "id": "q53",
+        "type": "multiple-choice",
+        "question": "She _______ a beautiful song.",
+        "options": [
+          "said",
+          "told",
+          "spoke",
+          "sang"
+        ],
+        "correctAnswer": "sang",
+        "explanation": "Verb distinction (say/tell/speak/talk/sing). Songs = sing (sang = past). Say = content, tell = someone, speak = language/talk.",
+        "japanese": "歌う = sing。say/tell/speak は話す。"
+      },
+      {
+        "id": "q54",
+        "type": "multiple-choice",
+        "question": "He _______ me a story about the king.",
+        "options": [
+          "said",
+          "told",
+          "spoke",
+          "talked"
+        ],
+        "correctAnswer": "told",
+        "explanation": "Verb distinction with indirect object. \"Tell someone something\". \"Say\" needs \"to\" (say to me). \"Tell me\".",
+        "japanese": "tell someone something = 人にものを語る。"
+      },
+      {
+        "id": "q55",
+        "type": "multiple-choice",
+        "question": "They _______ goodbye and left.",
+        "options": [
+          "said",
+          "told",
+          "spoke",
+          "talked"
+        ],
+        "correctAnswer": "said",
+        "explanation": "Fixed phrase \"say goodbye\". Fixed: say goodbye, say hello, say sorry. \"Tell\" needs object (tell me).",
+        "japanese": "say goodbye = さよならを言う（決まった表現）。"
+      },
+      {
+        "id": "q56",
+        "type": "multiple-choice",
+        "question": "I want to _______ English better.",
+        "options": [
+          "say",
+          "tell",
+          "speak",
+          "talk"
+        ],
+        "correctAnswer": "speak",
+        "explanation": "Verb for languages. \"Speak\" + language (speak English, speak Japanese). \"Talk\" = conversation.",
+        "japanese": "言語には speak。speak English。"
+      },
+      {
+        "id": "q57",
+        "type": "multiple-choice",
+        "question": "She _______ her friend at the market.",
+        "options": [
+          "looked",
+          "saw",
+          "watched",
+          "viewed"
+        ],
+        "correctAnswer": "saw",
+        "explanation": "Verb distinction (look/see/watch). \"See\" = 見える（自然に）. \"Look\" = 見る（意識的に）+ at. \"Watch\" = 観察する（動くもの）。",
+        "japanese": "see = 見える（結果）。look at = 見る（動作）。"
+      },
+      {
+        "id": "q58",
+        "type": "multiple-choice",
+        "question": "Please _______ at the blackboard.",
+        "options": [
+          "look",
+          "see",
+          "watch",
+          "view"
+        ],
+        "correctAnswer": "look",
+        "explanation": "Verb + preposition requirement. \"Look at\" = 見る（意識的）. \"See\" = no preposition needed (see something).",
+        "japanese": "look は単独では使いにくく、look at が基本。"
+      },
+      {
+        "id": "q59",
+        "type": "multiple-choice",
+        "question": "I _______ a movie last night.",
+        "options": [
+          "looked",
+          "saw",
+          "watched",
+          "viewed"
+        ],
+        "correctAnswer": "watched",
+        "explanation": "Verb for entertainment. \"Watch\" = 観る（動くもの、TV/映画）. \"See a movie\" also possible (結果として）。",
+        "japanese": "watch a movie = 映画を観る。"
+      },
+      {
+        "id": "q60",
+        "type": "multiple-choice",
+        "question": "He _______ his mother that he was safe.",
+        "options": [
+          "said",
+          "told",
+          "spoke",
+          "talked"
+        ],
+        "correctAnswer": "told",
+        "explanation": "Verb + indirect object. \"Tell someone\". \"Said to his mother\" or \"told his mother\".",
+        "japanese": "tell someone = 人に伝える。"
+      },
+      {
+        "id": "q61",
+        "type": "multiple-choice",
+        "question": "She is a _______ student.",
+        "options": [
+          "good",
+          "well",
+          "better",
+          "best"
+        ],
+        "correctAnswer": "good",
+        "explanation": "Adjective before noun. \"Good\" = adjective (modifies noun). \"Well\" = adverb (modifies verb) or health.",
+        "japanese": "名詞の前は形容詞 good。well は副詞か健康の意味。"
+      },
+      {
+        "id": "q62",
+        "type": "multiple-choice",
+        "question": "He speaks English very _______.",
+        "options": [
+          "good",
+          "well",
+          "better",
+          "best"
+        ],
+        "correctAnswer": "well",
+        "explanation": "Adverb modifying verb. \"Speaks\" = verb, needs adverb \"well\". \"Good\" cannot modify verbs.",
+        "japanese": "動詞を修飾するのは副詞 well。"
+      },
+      {
+        "id": "q63",
+        "type": "multiple-choice",
+        "question": "This is the _______ day of my life.",
+        "options": [
+          "happy",
+          "happier",
+          "happiest",
+          "more happy"
+        ],
+        "correctAnswer": "happiest",
+        "explanation": "Superlative adjective. \"The\" + superlative (-est or most + adj). \"The happiest\".",
+        "japanese": "最上級は the + -est。the happiest = 一番幸せな。"
+      },
+      {
+        "id": "q64",
+        "type": "multiple-choice",
+        "question": "She runs _______ than her brother.",
+        "options": [
+          "fast",
+          "faster",
+          "fastest",
+          "more fast"
+        ],
+        "correctAnswer": "faster",
+        "explanation": "Comparative adjective/adverb. \"Than\" = comparative signal. Fast → faster (not more fast).",
+        "japanese": "than = 比較級の印。fast → faster。"
+      },
+      {
+        "id": "q65",
+        "type": "multiple-choice",
+        "question": "The weather is _______ today than yesterday.",
+        "options": [
+          "good",
+          "better",
+          "best",
+          "more good"
+        ],
+        "correctAnswer": "better",
+        "explanation": "Irregular comparative. \"Good\" → \"better\" → \"best\" (irregular). Not \"more good\".",
+        "japanese": "不規則な比較級。good → better。"
+      },
+      {
+        "id": "q66",
+        "type": "multiple-choice",
+        "question": "Choose the correct word order:",
+        "options": [
+          "Yesterday to church went we.",
+          "We went to church yesterday.",
+          "To church we went yesterday.",
+          "Went we to church yesterday."
+        ],
+        "correctAnswer": "We went to church yesterday.",
+        "explanation": "Standard English word order (SVO). English = Subject + Verb + Object + Time. \"We (S) went (V) to church (O) yesterday (T).\"",
+        "japanese": "英語の基本語順は SVO（主語-動詞-目的語）。"
+      },
+      {
+        "id": "q67",
+        "type": "multiple-choice",
+        "question": "Choose the correct question:",
+        "options": [
+          "You are coming tomorrow?",
+          "Are you coming tomorrow?",
+          "Coming you are tomorrow?",
+          "Tomorrow are you coming?"
+        ],
+        "correctAnswer": "Are you coming tomorrow?",
+        "explanation": "Question word order (inversion). Yes/No questions = Auxiliary + Subject + Verb. \"Are (Aux) you (S) coming (V)...?\"",
+        "japanese": "疑問文は助動詞 + 主語 + 動詞の順。"
+      },
+      {
+        "id": "q68",
+        "type": "multiple-choice",
+        "question": "Choose the correct sentence:",
+        "options": [
+          "She speaks never English.",
+          "She never speaks English.",
+          "Never she speaks English.",
+          "She speaks English never."
+        ],
+        "correctAnswer": "She never speaks English.",
+        "explanation": "Adverb position with frequency words. \"Never\" goes before main verb (after be/auxiliary). \"She never speaks\".",
+        "japanese": "never は動詞の前。be動詞の後。"
+      },
+      {
+        "id": "q69",
+        "type": "multiple-choice",
+        "question": "Choose the correct negative:",
+        "options": [
+          "He don't like coffee.",
+          "He doesn't likes coffee.",
+          "He doesn't like coffee.",
+          "He not likes coffee."
+        ],
+        "correctAnswer": "He doesn't like coffee.",
+        "explanation": "Present simple negative. \"Doesn't\" + base verb (no -s). \"He doesn't like\" (not likes).",
+        "japanese": "doesn't の後は動詞の原形。"
+      },
+      {
+        "id": "q70",
+        "type": "multiple-choice",
+        "question": "Choose the correct sentence:",
+        "options": [
+          "Give me the book.",
+          "Give the book me.",
+          "Me give the book.",
+          "The book give me."
+        ],
+        "correctAnswer": "Give me the book.",
+        "explanation": "Indirect object position. \"Give me the book\" or \"Give the book to me\". Indirect object (me) before direct object (the book).",
+        "japanese": "give + 間接目的語 + 直接目的語。"
+      },
+      {
+        "id": "q71",
+        "type": "multiple-choice",
+        "question": "The shepherd _______ for the lost sheep.",
+        "options": [
+          "looked",
+          "searched",
+          "found",
+          "saw"
+        ],
+        "correctAnswer": "searched",
+        "explanation": "Phrasal verb \"look after\" vs. \"search for\". \"Look after\" = care for. \"Search for\" = try to find. Context = searching, so \"searched\" fits with \"for\".",
+        "japanese": "search for = 探す。look after = 世話する。"
+      },
+      {
+        "id": "q72",
+        "type": "multiple-choice",
+        "question": "He decided to _______ his old ways and start new.",
+        "options": [
+          "leave",
+          "remain",
+          "stay",
+          "keep"
+        ],
+        "correctAnswer": "leave",
+        "explanation": "Verb distinction (leave/remain). \"Leave\" = go away from/abandon. \"Remain/stay\" = continue. Context = change.",
+        "japanese": "leave = 去る・やめる。remain = 残る。"
+      },
+      {
+        "id": "q73",
+        "type": "multiple-choice",
+        "question": "Please _______ me for my mistake.",
+        "options": [
+          "forgive",
+          "forget",
+          "forsake",
+          "forbid"
+        ],
+        "correctAnswer": "forgive",
+        "explanation": "Vocabulary distinction (forgive/forget). \"Forgive\" = 許す. \"Forget\" = 忘れる. Context = pardon error.",
+        "japanese": "forgive = 許す。forget = 忘れる。"
+      },
+      {
+        "id": "q74",
+        "type": "multiple-choice",
+        "question": "She felt _______ peace after praying.",
+        "options": [
+          "in",
+          "on",
+          "at",
+          "with"
+        ],
+        "correctAnswer": "at",
+        "explanation": "Prepositional phrase \"at peace\". \"At peace\" = 平和な状態. Fixed phrase.",
+        "japanese": "at peace = 平和な状態で（決まった表現）。"
+      },
+      {
+        "id": "q75",
+        "type": "multiple-choice",
+        "question": "The light _______ away the darkness.",
+        "options": [
+          "put",
+          "gave",
+          "drove",
+          "took"
+        ],
+        "correctAnswer": "drove",
+        "explanation": "Phrasal verb \"drive away\". \"Drive away\" = 追い払う. \"Put away\" = 片付ける. \"Give away\" = 配る.",
+        "japanese": "drive away = 追い払う。"
+      },
+      {
+        "id": "q76",
+        "type": "multiple-choice",
+        "question": "He offered a _______ of thanks to God.",
+        "options": [
+          "prayer",
+          "praise",
+          "preach",
+          "practice"
+        ],
+        "correctAnswer": "prayer",
+        "explanation": "Noun distinction (prayer/praise/preach). \"Prayer\" = 祈り (noun). \"Praise\" = 賛美. \"Preach\" = 説教する (verb).",
+        "japanese": "prayer = 祈り（名詞）。praise = 賛美。"
+      },
+      {
+        "id": "q77",
+        "type": "multiple-choice",
+        "question": "They shared their bread _______ each other.",
+        "options": [
+          "to",
+          "for",
+          "with",
+          "by"
+        ],
+        "correctAnswer": "with",
+        "explanation": "Preposition with \"share\". \"Share with\" = 〜と分かち合う. Fixed collocation.",
+        "japanese": "share with = 〜と分かち合う。"
+      },
+      {
+        "id": "q78",
+        "type": "multiple-choice",
+        "question": "The story has a deep _______.",
+        "options": [
+          "message",
+          "letter",
+          "word",
+          "sentence"
+        ],
+        "correctAnswer": "message",
+        "explanation": "Vocabulary (message vs. letter). \"Message\" = 伝える内容・意味. \"Letter\" = 手紙. Context = meaning.",
+        "japanese": "message = 伝えたいこと・教え。"
+      },
+      {
+        "id": "q79",
+        "type": "multiple-choice",
+        "question": "He showed great _______ to the poor.",
+        "options": [
+          "kind",
+          "kindly",
+          "kindness",
+          "kindless"
+        ],
+        "correctAnswer": "kindness",
+        "explanation": "Noun form after adjective. \"Great\" = adjective, needs noun. \"Kindness\" = 親切さ (noun).",
+        "japanese": "形容詞の後は名詞 kindness。"
+      },
+      {
+        "id": "q80",
+        "type": "multiple-choice",
+        "question": "She _______ her hands together in prayer.",
+        "options": [
+          "put",
+          "joined",
+          "closed",
+          "touched"
+        ],
+        "correctAnswer": "joined",
+        "explanation": "Vocabulary collocation. \"Join hands\" = 手を合わせる. \"Fold hands\" also possible. \"Close hands\" = 不自然。",
+        "japanese": "join hands = 手を合わせる。"
+      },
+      {
+        "id": "q81",
+        "type": "multiple-choice",
+        "question": "There _______ many people in the temple.",
+        "options": [
+          "is",
+          "are",
+          "was",
+          "be"
+        ],
+        "correctAnswer": "are",
+        "explanation": "Subject-verb agreement (plural). \"People\" = plural (no singular form). Use \"are\".",
+        "japanese": "people は複数形（単数形なし）。are を使う。"
+      },
+      {
+        "id": "q82",
+        "type": "multiple-choice",
+        "question": "I have _______ brothers and one sister.",
+        "options": [
+          "two",
+          "second",
+          "twice",
+          "double"
+        ],
+        "correctAnswer": "two",
+        "explanation": "Cardinal vs. ordinal numbers. \"Two\" = 数量 (cardinal). \"Second\" = 順序 (ordinal). Counting brothers = two.",
+        "japanese": "数量には基数詞 two。second は順序。"
+      },
+      {
+        "id": "q83",
+        "type": "multiple-choice",
+        "question": "This is the _______ time I have read this book.",
+        "options": [
+          "one",
+          "first",
+          "once",
+          "primary"
+        ],
+        "correctAnswer": "first",
+        "explanation": "Ordinal numbers for sequence. \"The first time\" = 初めて. Ordinal numbers with \"the\".",
+        "japanese": "順序には序数詞 first。the を付ける。"
+      },
+      {
+        "id": "q84",
+        "type": "multiple-choice",
+        "question": "She has lived here _______ ten years.",
+        "options": [
+          "since",
+          "for",
+          "from",
+          "ago"
+        ],
+        "correctAnswer": "for",
+        "explanation": "Preposition for duration. \"For\" + duration (for ten years). \"Since\" + point in time (since 2010).",
+        "japanese": "期間には for。since は起点。"
+      },
+      {
+        "id": "q85",
+        "type": "multiple-choice",
+        "question": "There isn't _______ milk in the refrigerator.",
+        "options": [
+          "some",
+          "any",
+          "no",
+          "many"
+        ],
+        "correctAnswer": "any",
+        "explanation": "Some vs. any in negative sentences. Negative sentences use \"any\" (not some). \"No milk\" = also possible but double negative with \"isn't\" wrong.",
+        "japanese": "否定文では any。some は肯定文。"
+      },
+      {
+        "id": "q86",
+        "type": "multiple-choice",
+        "question": "_______ I use your pen, please?",
+        "options": [
+          "Must",
+          "Can",
+          "May",
+          "Should"
+        ],
+        "correctAnswer": "May",
+        "explanation": "Modal for polite permission. \"May\" = very polite permission. \"Can\" = casual permission. \"Could\" = also polite.",
+        "japanese": "may = 丁寧な許可を求める。"
+      },
+      {
+        "id": "q87",
+        "type": "multiple-choice",
+        "question": "You _______ eat vegetables to be healthy.",
+        "options": [
+          "can",
+          "must",
+          "may",
+          "might"
+        ],
+        "correctAnswer": "must",
+        "explanation": "Modal for strong obligation/necessity. \"Must\" = 必須・強い義務. \"Should\" = すべき（advice）. \"Can\" = ability.",
+        "japanese": "must = 必須。強い義務。"
+      },
+      {
+        "id": "q88",
+        "type": "multiple-choice",
+        "question": "He _______ speak three languages.",
+        "options": [
+          "must",
+          "should",
+          "can",
+          "may"
+        ],
+        "correctAnswer": "can",
+        "explanation": "Modal for ability. \"Can\" = ability/possibility. \"He can speak\" = 話せる.",
+        "japanese": "can = 能力。〜できる。"
+      },
+      {
+        "id": "q89",
+        "type": "multiple-choice",
+        "question": "You _______ worry about the test. It's easy.",
+        "options": [
+          "must",
+          "should",
+          "can",
+          "needn't"
+        ],
+        "correctAnswer": "needn't",
+        "explanation": "Modal for lack of necessity. \"Needn't\" or \"don't need to\" = 必要ない. \"Must not\" = 禁止（違う意味）。",
+        "japanese": "needn't = 必要ない。must not は禁止。"
+      },
+      {
+        "id": "q90",
+        "type": "multiple-choice",
+        "question": "_______ you help me carry this box?",
+        "options": [
+          "Must",
+          "Can",
+          "May",
+          "Should"
+        ],
+        "correctAnswer": "Can",
+        "explanation": "Modal for requests. \"Can you...?\" or \"Could you...?\" = request. \"Can\" = casual, \"Could\" = polite.",
+        "japanese": "Can you...? = 〜してくれますか？（依頼）。"
+      },
+      {
+        "id": "q91",
+        "type": "multiple-choice",
+        "question": "I need to _______ my hair before the meeting.",
+        "options": [
+          "cut",
+          "cutted",
+          "cutting",
+          "cuts"
+        ],
+        "correctAnswer": "cut",
+        "explanation": "Irregular verb past = present form. \"Cut\" = cut-cut-cut (same form). No \"cutted\".",
+        "japanese": "cut は不規則動詞で過去形も cut。"
+      },
+      {
+        "id": "q92",
+        "type": "multiple-choice",
+        "question": "She _______ a white dress to the party.",
+        "options": [
+          "wore",
+          "wear",
+          "weared",
+          "worn"
+        ],
+        "correctAnswer": "wore",
+        "explanation": "Irregular verb wear. Wear → wore → worn. Past tense = \"wore\" (not weared).",
+        "japanese": "wear → wore → worn。過去形は wore。"
+      },
+      {
+        "id": "q93",
+        "type": "multiple-choice",
+        "question": "He _______ me his phone number.",
+        "options": [
+          "give",
+          "gave",
+          "gived",
+          "given"
+        ],
+        "correctAnswer": "gave",
+        "explanation": "Irregular verb give. Give → gave → given. Past tense = \"gave\".",
+        "japanese": "give → gave → given。過去形は gave。"
+      },
+      {
+        "id": "q94",
+        "type": "multiple-choice",
+        "question": "Please _______ quiet in the library.",
+        "options": [
+          "keep",
+          "stay",
+          "be",
+          "All options are correct"
+        ],
+        "correctAnswer": "All options are correct",
+        "explanation": "Multiple correct options (synonyms). \"Keep quiet\", \"stay quiet\", \"be quiet\" = all correct! Context = state.",
+        "japanese": "keep/stay/be quiet = みな静かにして（全部正解）。"
+      },
+      {
+        "id": "q95",
+        "type": "multiple-choice",
+        "question": "I _______ my keys at home this morning.",
+        "options": [
+          "forgot",
+          "left",
+          "lost",
+          "kept"
+        ],
+        "correctAnswer": "left",
+        "explanation": "Leave vs. forget. \"Leave\" = 置き忘れる（場所を指定）. \"Forget\" = 忘れる（物・ことを思い出せない）. \"Left at home\" = correct.",
+        "japanese": "leave = 置き忘れる（場所あり）。forget = 忘れる。"
+      },
+      {
+        "id": "q96",
+        "type": "multiple-choice",
+        "question": "The store is _______ the bank and the post office.",
+        "options": [
+          "among",
+          "between",
+          "beside",
+          "near"
+        ],
+        "correctAnswer": "between",
+        "explanation": "Between vs. among. \"Between\" = 2 things. \"Among\" = 3+ things. \"Bank and post office\" = 2 things.",
+        "japanese": "between = 2つの間。among = 3つ以上の間。"
+      },
+      {
+        "id": "q97",
+        "type": "multiple-choice",
+        "question": "She _______ her friend at the station.",
+        "options": [
+          "knew",
+          "met",
+          "found",
+          "looked"
+        ],
+        "correctAnswer": "met",
+        "explanation": "Meet vs. know. \"Meet\" = 会う（初めてまたは特定の時間）. \"Know\" = 知っている（状態）. Context = station = planned meeting.",
+        "japanese": "meet = 会う（一度きりまたは予定）。know = 知る（継続）。"
+      },
+      {
+        "id": "q98",
+        "type": "multiple-choice",
+        "question": "I _______ up at 6 o'clock every day.",
+        "options": [
+          "wake",
+          "woke",
+          "waked",
+          "woken"
+        ],
+        "correctAnswer": "wake",
+        "explanation": "Present simple with frequency. \"Every day\" = habit. Present simple \"wake\". (wake → woke → woken).",
+        "japanese": "every day = 現在形。wake → woke → woken。"
+      },
+      {
+        "id": "q99",
+        "type": "multiple-choice",
+        "question": "He _______ his leg in the accident.",
+        "options": [
+          "breaked",
+          "broke",
+          "broken",
+          "breaking"
+        ],
+        "correctAnswer": "broke",
+        "explanation": "Irregular verb break. Break → broke → broken. Past tense = \"broke\" (not breaked).",
+        "japanese": "break → broke → broken。過去形は broke。"
+      },
+      {
+        "id": "q100",
+        "type": "multiple-choice",
+        "question": "This is a _______ situation.",
+        "options": [
+          "hard",
+          "hardly",
+          "hardness",
+          "harden"
+        ],
+        "correctAnswer": "hard",
+        "explanation": "Adjective form. \"Hard\" = adjective (難しい・硬い). \"Hardly\" = adverb (ほとんど～ない). \"Hardness\" = noun.",
+        "japanese": "hard = 形容詞（難しい）。hardly = 副詞（ほとんど～ない）。"
+      }
+    ]
+  }
+]

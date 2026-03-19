@@ -1,0 +1,17 @@
+[
+  {
+    "id": "a2-quiz-001",
+    "title": "A2 Grammar Check",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "mcq",
+        "question": "The man builds his house ___ the rock.",
+        "options": ["on", "under", "in", "by"],
+        "correctAnswer": "on",
+        "explanation": "Use 'on' for surfaces and foundations.",
+        "japanese": "彼は岩の上に家を建てます。"
+      }
+    ]
+  }
+]

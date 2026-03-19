@@ -1,24 +1,29 @@
 :root {
-  /* Base palette adapted to modern/soft style */
-  --hg-bg-base: #E0E5EC; /* Darker soft background for better Neumorphism contrast */
-  --hg-card-bg: #E0E5EC;
-  --hg-primary: #6B8E9F;
-  --hg-accent: #E8A598;
-  --hg-text-primary: #2D3436;
-  --hg-text-secondary: #636E72;
+  /* Modern Flat Palette */
+  --hg-bg-base: #F8FAFC;
+  --hg-card-bg: #FFFFFF;
+  --hg-primary: #3B82F6; /* Modern Blue */
+  --hg-primary-light: #EFF6FF;
+  --hg-accent: #F59E0B; /* Warm Amber */
+  --hg-success: #10B981;
+  --hg-text-primary: #1E293B;
+  --hg-text-secondary: #64748B;
+  --hg-border-color: #E2E8F0;
 
-  /* Neumorphic Shadows (Soft UI) - Stronger for better visibility */
-  --hg-shadow-outer: 9px 9px 16px #BABECC, -9px -9px 16px #FFFFFF;
-  --hg-shadow-inner: inset 4px 4px 10px #BABECC, inset -4px -4px 10px #FFFFFF;
-  --hg-shadow-active: inset 2px 2px 5px #99A1AF, inset -2px -2px 5px #FFFFFF;
-
-  /* Glow Accents */
-  --hg-glow: 0 0 15px rgba(232, 165, 152, 0.5), 0 0 5px rgba(255, 183, 77, 0.3);
+  /* Card Shadows */
+  --hg-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --hg-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --hg-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
   /* Typography */
-  --hg-font-main: 'Segoe UI', 'system-ui', '-apple-system', sans-serif;
-  --hg-radius-pill: 50px;
-  --hg-radius-card: 24px;
+  --hg-font-main: 'Inter', 'Segoe UI', 'system-ui', '-apple-system', sans-serif;
+  --hg-radius-pill: 9999px;
+  --hg-radius-card: 16px;
+  --hg-radius-inner: 12px;
+
+  /* Layout Constants */
+  --hg-sidebar-width: 260px;
+  --hg-header-height: 72px;
 }
 
 * {
@@ -28,8 +33,9 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
   background-color: var(--hg-bg-base);
   font-family: var(--hg-font-main);
   color: var(--hg-text-primary);
@@ -37,7 +43,22 @@ html, body {
 }
 
 hg-app {
-  display: block;
-  height: 100%;
-  width: 100%;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hg-border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hg-text-secondary);
 }

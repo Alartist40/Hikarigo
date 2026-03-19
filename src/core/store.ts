@@ -33,19 +33,31 @@ export class Store<T> {
 export interface AppState {
   theme: 'light' | 'dark' | 'auto';
   language: 'ja' | 'en';
-  user: {
-    xp: number;
-    level: number;
-    streak: number;
-  } | null;
   currentRoute: string;
+  points: number;
+  level: number;
 }
 
 const initialState: AppState = {
   theme: 'auto',
   language: 'ja',
-  user: null,
   currentRoute: window.location.hash || '#home',
+  points: 0,
+  level: 1,
 };
 
 export const store = new Store<AppState>(initialState);
+
+export const updatePoints = (pointsToAdd: number) => {
+  const currentState = store.getState();
+  let newPoints = currentState.points + pointsToAdd;
+  let newLevel = currentState.level;
+
+  if (newPoints >= 100) {
+    newLevel += 1;
+    newPoints -= 100;
+    console.log(`Level Up! Now at level ${newLevel}`);
+  }
+
+  store.setState({ points: newPoints, level: newLevel });
+};
