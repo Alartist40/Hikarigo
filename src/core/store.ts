@@ -119,6 +119,18 @@ export function markLessonCompleted(lessonId: string) {
   }
 }
 
+export function toggleLessonCompleted(lessonId: string) {
+  const state = store.getState();
+  const exists = state.completedLessons.includes(lessonId);
+  if (exists) {
+    store.setState({
+      completedLessons: state.completedLessons.filter(id => id !== lessonId)
+    });
+  } else {
+    markLessonCompleted(lessonId);
+  }
+}
+
 export function toggleBookmark(id: string) {
   const state = store.getState();
   const exists = state.bookmarks.includes(id);

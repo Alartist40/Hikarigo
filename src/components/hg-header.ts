@@ -408,7 +408,7 @@ export class HGHeader extends LitElement {
         <nav class="nav-links">
           <a class="nav-item ${this.activeRoute === '#home' ? 'active' : ''}" 
              @click=${() => Router.navigate('#home')}>ホーム</a>
-          <a class="nav-item ${this.activeRoute.startsWith('#lessons') ? 'active' : ''}" 
+          <a class="nav-item ${this.activeRoute.startsWith('#lesson') ? 'active' : ''}" 
              @click=${() => Router.navigate('#lessons')}>文法・体系</a>
           <a class="nav-item ${this.activeRoute.startsWith('#flashcards') ? 'active' : ''}" 
              @click=${() => Router.navigate('#flashcards')}>語彙暗記</a>

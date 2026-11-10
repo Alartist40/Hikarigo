@@ -53,22 +53,60 @@ class AudioEngine {
     }
   }
 
-  speak(text: string, customRate?: number) {
+  playChime() {
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+      osc.frequency.exponentialRampToValueAtTime(659.25, ctx.currentTime + 0.12); // E5
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.4);
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  speak(text: string, customRate?: number, onEnd?: () => void) {
     if (!this._synth) {
       console.warn('Speech synthesis not supported in this environment');
+      this.playChime();
+      if (onEnd) onEnd();
       return;
     }
     this._synth.cancel(); // Stop any pending utterances
     const cleanText = text.replace(/\[.*?\]/g, '').replace(/[\(\)]/g, '').trim();
-    if (!cleanText) return;
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-    utterance.lang = 'en-US';
-    utterance.rate = customRate || this._rate;
-    utterance.pitch = this._pitch;
-    if (this._voice) {
-      utterance.voice = this._voice;
+    if (!cleanText) {
+      if (onEnd) onEnd();
+      return;
     }
-    this._synth.speak(utterance);
+    try {
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      utterance.rate = customRate || this._rate;
+      utterance.pitch = this._pitch;
+      if (this._voice) {
+        utterance.voice = this._voice;
+      }
+      utterance.onend = () => {
+        if (onEnd) onEnd();
+      };
+      utterance.onerror = () => {
+        this.playChime();
+        if (onEnd) onEnd();
+      };
+      this._synth.speak(utterance);
+    } catch (e) {
+      this.playChime();
+      if (onEnd) onEnd();
+    }
   }
 
   cycleRate(): SpeechRate {

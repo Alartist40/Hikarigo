@@ -1,41 +1,48 @@
-import { LitElement, html, css, PropertyValues } from 'lit';
+import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import type { LevelId, LevelData } from '../../data/types';
 import { allLevelsData, levelOrder } from '../../data';
 import { Router } from '../../core/router';
 import { audioEngine } from '../../core/audio';
-import { setActiveLevel } from '../../core/store';
+import { setActiveLevel, store } from '../../core/store';
 
 @customElement('hg-lessons-view')
 export class HGLessonsView extends LitElement {
   static override properties = {
     activeLevel: { type: String },
-    selectedLevel: { type: String },
-    _activeTab: { state: true }
+    _activeTab: { state: true },
+    _playingAudioKey: { state: true }
   };
 
   @property({ type: String })
   activeLevel: string = 'a1';
 
-  @property({ type: String })
-  selectedLevel: string = '';
-
   @state()
   private _activeTab: 'grammar' | 'vocab' | 'readings' = 'grammar';
 
+  @state()
+  private _playingAudioKey: string | null = null;
+
+  private _unsubscribe?: () => void;
+
+  override connectedCallback() {
+    super.connectedCallback();
+    this._unsubscribe = store.subscribe(() => {
+      this.requestUpdate();
+    });
+  }
+
+  override disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this._unsubscribe) this._unsubscribe();
+  }
+
   private get _currentLevel(): LevelId {
-    const lvl = (this.selectedLevel || this.activeLevel || 'a1') as LevelId;
+    const lvl = (this.activeLevel || 'a1') as LevelId;
     return (allLevelsData[lvl] ? lvl : 'a1') as LevelId;
   }
 
-  override willUpdate(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('activeLevel') && this.activeLevel) {
-      this.selectedLevel = this.activeLevel;
-    }
-  }
-
   private _onLevelClick(lvlId: LevelId) {
-    this.selectedLevel = lvlId;
     this.activeLevel = lvlId;
     setActiveLevel(lvlId);
     this.requestUpdate();
@@ -46,9 +53,20 @@ export class HGLessonsView extends LitElement {
     this.requestUpdate();
   }
 
-  private _playAudio(text: string, e: Event) {
+  private _playAudio(key: string, text: string, e: Event) {
     e.stopPropagation();
-    audioEngine.speak(text);
+    this._playingAudioKey = key;
+    this.requestUpdate();
+    audioEngine.speak(text, undefined, () => {
+      this._playingAudioKey = null;
+      this.requestUpdate();
+    });
+    setTimeout(() => {
+      if (this._playingAudioKey === key) {
+        this._playingAudioKey = null;
+        this.requestUpdate();
+      }
+    }, 2200);
   }
 
   private _openLesson(id: string) {
@@ -100,8 +118,21 @@ export class HGLessonsView extends LitElement {
       align-items: center;
       gap: 0.75rem;
       overflow-x: auto;
-      padding: 0.4rem 0.2rem 1rem;
+      padding: 0.4rem 0.2rem 0.6rem;
       margin-bottom: 2rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .level-selector-row::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+    @media (min-width: 820px) {
+      .level-selector-row {
+        flex-wrap: wrap;
+        overflow-x: visible;
+      }
     }
     .level-btn {
       display: flex;
@@ -115,12 +146,17 @@ export class HGLessonsView extends LitElement {
       cursor: pointer;
       user-select: none;
       min-width: 125px;
-      transition: all 0.14s ease;
+      transition: all 0.16s var(--ease-spring);
+      text-align: left;
+      font-family: inherit;
     }
     .level-btn:hover {
       background: var(--card-subtle, #F4F1FD);
       border-color: var(--theme-lavender, #7C66DC);
       transform: translateY(-2px);
+    }
+    .level-btn:active {
+      transform: translateY(1px);
     }
     .level-btn.active {
       background: var(--theme-lavender, #7C66DC);
@@ -165,6 +201,7 @@ export class HGLessonsView extends LitElement {
       border-radius: var(--radius-pill, 9999px);
       cursor: pointer;
       transition: all 0.14s ease;
+      font-family: inherit;
     }
     .tab-btn:hover {
       color: var(--theme-lavender-deep, #4E3E96);
@@ -187,12 +224,16 @@ export class HGLessonsView extends LitElement {
       box-shadow: var(--bubble-tactile-card);
       padding: 1.75rem 2rem;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.16s var(--ease-spring);
+      position: relative;
     }
     .grammar-item-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(124, 102, 220, 0.15);
       border-color: var(--theme-lavender, #7C66DC);
+    }
+    .grammar-item-card:active {
+      transform: translateY(1px);
     }
     .item-top {
       display: flex;
@@ -205,11 +246,34 @@ export class HGLessonsView extends LitElement {
       font-size: 1.2rem;
       font-weight: 800;
       color: var(--ink, #231C38);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge-completed {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #047857;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill, 9999px);
+    }
+    .badge-bookmarked {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--theme-lavender-deep, #4E3E96);
+      background: var(--theme-lavender-light, #ECE7FB);
+      border: 1px solid var(--card-border, #DDD6F7);
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill, 9999px);
     }
     .item-meaning {
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--theme-lavender-deep, #4E3E96);
+      margin-top: 0.3rem;
       margin-bottom: 0.6rem;
     }
     .item-formula {
@@ -227,6 +291,64 @@ export class HGLessonsView extends LitElement {
       font-size: 0.9rem;
       color: var(--muted, #847C9F);
       font-style: italic;
+      margin-bottom: 1.1rem;
+    }
+    .item-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--card-subtle, #F4F1FD);
+      padding-top: 0.9rem;
+    }
+    .btn-open-lesson {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-pill, 9999px);
+      background: var(--theme-lavender-light, #ECE7FB);
+      color: var(--theme-lavender-deep, #4E3E96);
+      border: 1.5px solid var(--card-border, #DDD6F7);
+      font-size: 0.86rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.14s ease;
+      font-family: inherit;
+    }
+    .grammar-item-card:hover .btn-open-lesson {
+      background: var(--theme-lavender, #7C66DC);
+      color: #FFFFFF;
+      border-color: var(--theme-lavender-deep, #4E3E96);
+    }
+    .btn-audio {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill, 9999px);
+      border: 1.5px solid var(--card-border, #DDD6F7);
+      background: var(--card-bg, #FFFFFF);
+      color: var(--theme-lavender, #7C66DC);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.14s ease;
+      flex-shrink: 0;
+    }
+    .btn-audio:hover {
+      background: var(--theme-lavender-light, #ECE7FB);
+      border-color: var(--theme-lavender, #7C66DC);
+      transform: scale(1.08);
+    }
+    .btn-audio.playing {
+      background: var(--theme-lavender, #7C66DC);
+      color: #FFFFFF;
+      border-color: var(--theme-lavender-deep, #4E3E96);
+      animation: bubblePulse 1s infinite;
+    }
+    .btn-audio svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
     /* Vocab Grid */
     .vocab-grid {
@@ -295,6 +417,21 @@ export class HGLessonsView extends LitElement {
       font-size: 0.76rem;
       color: var(--muted, #847C9F);
     }
+    .vocab-btn-action {
+      background: none;
+      border: none;
+      color: var(--theme-lavender-deep, #4E3E96);
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-pill, 9999px);
+      transition: all 0.12s ease;
+    }
+    .vocab-btn-action:hover {
+      background: var(--theme-lavender-light, #ECE7FB);
+      text-decoration: underline;
+    }
     /* Readings */
     .readings-list {
       display: flex;
@@ -341,34 +478,40 @@ export class HGLessonsView extends LitElement {
       background: var(--card-subtle, #F4F1FD);
       padding: 1.1rem 1.35rem;
       border-radius: var(--radius-md, 20px);
+      margin-bottom: 1.25rem;
     }
-    .btn-audio {
-      width: 34px;
-      height: 34px;
-      border-radius: var(--radius-pill, 9999px);
-      border: 1.5px solid var(--card-border, #DDD6F7);
-      background: var(--card-bg, #FFFFFF);
-      color: var(--theme-lavender, #7C66DC);
-      cursor: pointer;
+    .reading-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--theme-lavender-light, #ECE7FB);
+      padding-top: 1rem;
+    }
+    .reading-btn-action {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      transition: all 0.12s ease;
+      gap: 0.4rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-pill, 9999px);
+      background: var(--theme-lavender, #7C66DC);
+      color: #FFFFFF;
+      border: 1px solid var(--theme-lavender-deep, #4E3E96);
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.14s ease;
+      font-family: inherit;
     }
-    .btn-audio:hover {
-      background: var(--theme-lavender-light, #ECE7FB);
-      border-color: var(--theme-lavender, #7C66DC);
+    .reading-btn-action:hover {
+      background: var(--theme-lavender-hover, #6D54CD);
       transform: translateY(-1px);
-    }
-    .btn-audio svg {
-      width: 15px;
-      height: 15px;
-      fill: currentColor;
     }
   `;
 
   override render() {
     const data: LevelData = allLevelsData[this._currentLevel] || allLevelsData.a1;
+    const completedList = store.getState().completedLessons;
+    const bookmarksList = store.getState().bookmarks;
 
     return html`
       <div class="header-banner">
@@ -383,10 +526,10 @@ export class HGLessonsView extends LitElement {
           const lData = allLevelsData[lvl];
           const isActive = this._currentLevel === lvl;
           return html`
-            <div class="level-btn ${isActive ? 'active' : ''}" @click=${() => this._onLevelClick(lvl)}>
+            <button type="button" class="level-btn ${isActive ? 'active' : ''}" @click=${() => this._onLevelClick(lvl)}>
               <span class="level-btn-tag">${lvl.toUpperCase()}</span>
               <span class="level-btn-ielts">${lData.meta.ielts.replace('IELTS ', '')}</span>
-            </div>
+            </button>
           `;
         })}
       </div>
@@ -410,64 +553,118 @@ export class HGLessonsView extends LitElement {
       <!-- Content Views -->
       ${this._activeTab === 'grammar' ? html`
         <div class="grammar-list">
-          ${data.grammar.map(item => html`
-            <div class="grammar-item-card" @click=${() => this._openLesson(item.id)}>
-              <div class="item-top">
-                <div>
-                  <div class="item-title">${item.title}</div>
-                  <div class="item-meaning">意味・機能: ${item.japaneseMeaning}</div>
+          ${data.grammar.map(item => {
+            const isCompleted = completedList.includes(item.id);
+            const isBookmarked = bookmarksList.includes(item.id);
+            const isPlaying = this._playingAudioKey === `grammar-${item.id}`;
+
+            return html`
+              <div class="grammar-item-card" 
+                   role="button" 
+                   tabindex="0" 
+                   @click=${() => this._openLesson(item.id)}
+                   @keydown=${(e: KeyboardEvent) => e.key === 'Enter' && this._openLesson(item.id)}>
+                <div class="item-top">
+                  <div>
+                    <div class="item-title">
+                      ${item.title}
+                      ${isCompleted ? html`<span class="badge-completed">修了 ✓</span>` : ''}
+                      ${isBookmarked ? html`<span class="badge-bookmarked">★ 保存中</span>` : ''}
+                    </div>
+                    <div class="item-meaning">意味・機能: ${item.japaneseMeaning}</div>
+                  </div>
+                  <button type="button" 
+                          class="btn-audio ${isPlaying ? 'playing' : ''}" 
+                          @click=${(e: Event) => this._playAudio(`grammar-${item.id}`, item.examples[0]?.english || '', e)} 
+                          title="例文を発音">
+                    <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                  </button>
                 </div>
-                <button class="btn-audio" @click=${(e: Event) => this._playAudio(item.examples[0]?.english || '', e)} title="音声読み上げ">
-                  <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-                </button>
+                <div class="item-formula">${item.structureFormula}</div>
+                <div class="item-preview">例: "${item.examples[0]?.english}"</div>
+
+                <div class="item-bottom-row">
+                  <span style="font-size: 0.8rem; color: var(--muted); font-weight: 700;">
+                    ${item.miniQuiz.length}問の確認クイズあり
+                  </span>
+                  <button type="button" class="btn-open-lesson" @click=${(e: Event) => { e.stopPropagation(); this._openLesson(item.id); }}>
+                    解説・クイズを始める →
+                  </button>
+                </div>
               </div>
-              <div class="item-formula">${item.structureFormula}</div>
-              <div class="item-preview">例: "${item.examples[0]?.english}"</div>
-            </div>
-          `)}
+            `;
+          })}
         </div>
       ` : ''}
 
       ${this._activeTab === 'vocab' ? html`
         <div class="vocab-grid">
-          ${data.vocabulary.map(word => html`
-            <div class="vocab-bubble-card">
-              <div>
-                <div class="vocab-card-header">
-                  <div class="vocab-word">${word.word}</div>
-                  <div class="vocab-ipa">${word.phoneticIpa}</div>
+          ${data.vocabulary.map(word => {
+            const isPlaying = this._playingAudioKey === `vocab-${word.id}`;
+            return html`
+              <div class="vocab-bubble-card">
+                <div>
+                  <div class="vocab-card-header">
+                    <div class="vocab-word">${word.word}</div>
+                    <div class="vocab-ipa">${word.phoneticIpa}</div>
+                  </div>
+                  <div style="margin-top: 0.35rem; margin-bottom: 0.6rem;">
+                    <span class="vocab-pos">${word.partOfSpeech}</span>
+                  </div>
+                  <div class="vocab-meaning">${word.japaneseMeaning}</div>
+                  <div class="vocab-example">"${word.exampleSentence}"</div>
+                  <div class="vocab-example-ja">${word.exampleJapanese}</div>
                 </div>
-                <div style="margin-top: 0.35rem; margin-bottom: 0.6rem;">
-                  <span class="vocab-pos">${word.partOfSpeech}</span>
-                </div>
-                <div class="vocab-meaning">${word.japaneseMeaning}</div>
-                <div class="vocab-example">"${word.exampleSentence}"</div>
-                <div class="vocab-example-ja">${word.exampleJapanese}</div>
-              </div>
 
-              <div class="vocab-footer">
-                <span>${word.scriptureReference}</span>
-                <button class="btn-audio" @click=${(e: Event) => this._playAudio(word.word, e)} title="発音を聞く">
-                  <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-                </button>
+                <div class="vocab-footer">
+                  <span>${word.scriptureReference}</span>
+                  <div style="display: flex; gap: 0.5rem; align-items: center;">
+                    <button class="vocab-btn-action" @click=${(e: Event) => { e.stopPropagation(); Router.navigate('#flashcards'); }}>
+                      単語帳へ →
+                    </button>
+                    <button type="button" 
+                            class="btn-audio ${isPlaying ? 'playing' : ''}" 
+                            @click=${(e: Event) => this._playAudio(`vocab-${word.id}`, word.word, e)} 
+                            title="発音を聞く">
+                      <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/></svg>
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
-          `)}
+            `;
+          })}
         </div>
       ` : ''}
 
       ${this._activeTab === 'readings' ? html`
         <div class="readings-list">
-          ${data.readings.map(reading => html`
-            <div class="reading-bubble-card">
-              <div class="reading-top">
-                <div class="reading-title">${reading.title}</div>
-                <span class="reading-source">${reading.source}</span>
+          ${data.readings.map(reading => {
+            const isPlaying = this._playingAudioKey === `reading-${reading.id}`;
+            return html`
+              <div class="reading-bubble-card">
+                <div class="reading-top">
+                  <div class="reading-title">${reading.title}</div>
+                  <span class="reading-source">${reading.source}</span>
+                </div>
+                <div class="reading-text">${reading.passage}</div>
+                <div class="reading-ja">${reading.passageJapanese}</div>
+
+                <div class="reading-footer-row">
+                  <button type="button" 
+                          class="btn-audio ${isPlaying ? 'playing' : ''}" 
+                          @click=${(e: Event) => this._playAudio(`reading-${reading.id}`, reading.passage, e)} 
+                          title="全文を朗読">
+                    <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                  </button>
+                  <button type="button" 
+                          class="reading-btn-action" 
+                          @click=${() => Router.navigate('#reader')}>
+                    対読リーダーで精読・穴埋め →
+                  </button>
+                </div>
               </div>
-              <div class="reading-text">${reading.passage}</div>
-              <div class="reading-ja">${reading.passageJapanese}</div>
-            </div>
-          `)}
+            `;
+          })}
         </div>
       ` : ''}
     `;
